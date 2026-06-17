@@ -1,0 +1,21 @@
+{%- comment -%}
+  minima injects this file into the <head> of every page.
+  It turns ```mermaid fenced code blocks into live diagrams — GitHub Pages
+  does not do this on its own.
+{%- endcomment -%}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false });
+
+  // Jekyll renders ```mermaid as <pre><code class="language-mermaid">…</code></pre>.
+  // Swap each one for a <div class="mermaid"> holding the raw diagram source.
+  document.querySelectorAll('code.language-mermaid').forEach((el) => {
+    const host = el.closest('pre') || el;
+    const div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = el.textContent;
+    host.replaceWith(div);
+  });
+
+  await mermaid.run({ querySelector: '.mermaid' });
+</script>

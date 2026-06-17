@@ -1,0 +1,23 @@
+title: Vikrant Jain
+email: vikrantj@gmail.com
+description: >-
+  Writing on software architecture, AI coding agents, and engineering practice.
+baseurl: ""
+url: ""
+
+theme: minima
+
+# Lock clean URLs early so migrating off Jekyll later won't break shared links.
+permalink: /:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+markdown: kramdown
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
