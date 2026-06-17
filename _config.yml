@@ -1,23 +1,63 @@
+# --- General ---
 title: Vikrant Jain
-email: vikrantj@gmail.com
+author: Vikrant Jain
 description: >-
   Writing on software architecture, AI coding agents, and engineering practice.
-baseurl: ""
-url: ""
 
-theme: minima
+remote_theme: daattali/beautiful-jekyll@6.0.1
 
-# Lock clean URLs early so migrating off Jekyll later won't break shared links.
+# --- Navigation bar ---
+navbar-links:
+  Home: ""
+  About: "about"
+
+title-on-all-pages: true
+
+# --- Footer / social links ---
+social-network-links:
+  github: vikrantjain
+  linkedin: vikrantjain
+  rss: true
+rss-description: >-
+  Software architecture, AI coding agents, and engineering practice.
+
+share-links-active:
+  linkedin: true
+  twitter: true
+  reddit: true
+
+# --- Post list / search ---
+post_search: true
+feed_show_excerpt: true
+feed_show_tags: true
+excerpt_length: 50
+
+# --- Build / formatting ---
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+date_format: "%B %-d, %Y"
 permalink: /:title/
 
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      head-extra: [mermaid.html]
+  - scope:
+      path: ""
+    values:
+      layout: "page"
+      head-extra: [mermaid.html]
+
 plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed
 
-markdown: kramdown
-
 exclude:
-  - Gemfile
-  - Gemfile.lock
   - README.md
-  - vendor
