@@ -240,7 +240,7 @@ Channels are experimental. Agent teams are experimental. The pieces are early an
 
 The code is [open source](https://github.com/vikrantjain/claude-code-chat). It's ~190 lines. Read it, run it, break it, extend it.
 
-> **Personal Insight:** I've written before about how [AI agents mirror organizational structures](https://vikrantjain.hashnode.dev/ai-efficiency-organizational-change) — replacing the coordination overhead of large teams with scoped context and automated orchestration. Building `claude-code-chat` made that abstract idea concrete. Each Claude Code instance already behaves like a team — a lead coordinating specialized workers. Channels gave me the bridge to connect those teams across machines. When I watched three instances negotiate an API contract without any human intervention, it stopped being a prediction about the future and became something I could point at and say: "this is how it works now."
+> **Personal Insight:** I've written before about how [AI agents mirror organizational structures](/ai-efficiency-organizational-change/) — replacing the coordination overhead of large teams with scoped context and automated orchestration. Building `claude-code-chat` made that abstract idea concrete. Each Claude Code instance already behaves like a team — a lead coordinating specialized workers. Channels gave me the bridge to connect those teams across machines. When I watched three instances negotiate an API contract without any human intervention, it stopped being a prediction about the future and became something I could point at and say: "this is how it works now."
 
 * * *
 

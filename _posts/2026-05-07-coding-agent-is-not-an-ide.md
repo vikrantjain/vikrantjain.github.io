@@ -15,7 +15,7 @@ Your organization just spent six figures putting an AI coding tool on every deve
 
 ---
 
-> I argued [previously](https://vikrantjain.hashnode.dev/ai-efficiency-organizational-change) that AI productivity gains require organizational change, not just tool adoption. Several leaders pushed back: *you're proposing a solution without showing me the real problem.* That's fair. This article shows both — first the problem, then the solution.
+> I argued [previously](/ai-efficiency-organizational-change/) that AI productivity gains require organizational change, not just tool adoption. Several leaders pushed back: *you're proposing a solution without showing me the real problem.* That's fair. This article shows both — first the problem, then the solution.
 
 ### The failure loop
 
@@ -130,7 +130,7 @@ The conductor never typed the implementation. They did the work that actually ma
 
 There's a structural reason for this rule: the conductor's most important skill is *context management* — turning unclear requirements into clear, well-scoped instructions an agent can act on. Management cannot judge the context (no technical depth at scale, no time to review prompts and specs). Management can only judge outcomes. Visibility from agent artifacts isn't a stylistic preference. It's the only signal management is actually in a position to read.
 
-**3. System state that speaks for itself.** Bad agent inputs guarantee bad agent outputs. If your code is opaque, your contracts implicit, your tests sparse, your docs stale — agents will produce confusion. Today's documentation is created by humans for humans, narrative and gap-tolerant, perpetually losing to deadline pressure. This is why [documentation has to be treated as an architecture practice](https://vikrantjain.hashnode.dev/documentation-is-not-a-deliverable-its-an-architecture-practice), not a deliverable bolted on at the end.
+**3. System state that speaks for itself.** Bad agent inputs guarantee bad agent outputs. If your code is opaque, your contracts implicit, your tests sparse, your docs stale — agents will produce confusion. Today's documentation is created by humans for humans, narrative and gap-tolerant, perpetually losing to deadline pressure. This is why [documentation has to be treated as an architecture practice](/documentation-is-not-a-deliverable-its-an-architecture-practice/), not a deliverable bolted on at the end.
 
 The third pillar is system state that *agents author, agents maintain, and machines can verify*: schemas, ADRs in rigid templates, runbooks, tests-as-specs, code-grounded references that update on every PR. The conductor defines the shape; agents do the labor; humans review at gates. **The agents that do the work also maintain the context the next agents will use.**
 
