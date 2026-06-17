@@ -253,4 +253,3 @@ Watch the collaboration session as scripted in the [project README](https://gith
 
 > [**Provide comments on LinkedIn**](https://www.linkedin.com/posts/vikrantj_claudecode-claudeai-aiagents-share-7445312917002149888-ObGi) (No extra login required!)
 
-> **Provide comments here** if you're a fellow Hashnode creator.

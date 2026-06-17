@@ -212,4 +212,3 @@ Use this understanding to work more effectively. Don't fight the architecture â€
 
 > [**Provide comments on LinkedIn**](https://www.linkedin.com/in/vikrantj/) (No extra login required!)
 
-> **Provide comments here** if you're a fellow Hashnode creator.

@@ -130,4 +130,3 @@ The next evolution might be AI not just executing well-designed solutions, but c
 
 > [**Provide comments on LinkedIn** (No extra login required!)](https://www.linkedin.com/posts/vikrantj_ai-softwareengineering-futureofwork-activity-7424664378651656192-VsRR?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAE5wE0BOQMw8zJ20QN54UvpVrw33kmUWjE)
 
-> **Provide comments here** if you're a fellow Hashnode creator.
