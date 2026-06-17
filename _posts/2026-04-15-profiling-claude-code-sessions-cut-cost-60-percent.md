@@ -4,6 +4,7 @@ title: "I Cut My AI Coding Agent's Cost by 60% — By Watching What It Actually 
 description: "Profiling Claude Code sessions with OpenTelemetry reveals where tokens and time really go — and how to engineer the waste out"
 date: 2026-04-15
 permalink: /profiling-claude-code-sessions-cut-cost-60-percent/
+share-img: "/assets/images/og-profiling-claude-code-sessions.png"
 tags: [claude-code, claudeai, ai-agents, observability, cost-optimization, llm]
 ---
 
