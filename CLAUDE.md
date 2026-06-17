@@ -29,9 +29,14 @@ title: "..."
 description: "..."        # SEO; omit to fall back to auto-excerpt
 date: YYYY-MM-DD
 permalink: /slug/         # matches the original Hashnode slug
+share-img: "/assets/images/og-slug.png"  # OG/social card image; optional
 tags: [a, b, c]
 ---
 ```
+
+`share-img` sets the Open Graph / Twitter card image used when a post is shared.
+OG images live in `assets/images/` named `og-<slug>.<ext>`. All posts have one
+except `documentation-is-not-a-deliverable` (intentionally none).
 
 Body conventions (kept generator-agnostic for portability):
 - Section headings use `###` (h3). The title lives in frontmatter. Do not use `#`/`##` in the body.
@@ -53,5 +58,5 @@ GitHub Pages does **not** render mermaid on its own (that's a github.com repo-vi
 ## Open items / constraints
 
 - The **multi-agent article** (`../articles/claude-chat/article.md`) is a contracted client deliverable and must NOT be published until written client approval. It is deliberately not in this repo yet.
-- A few post bodies still contain `vikrantjain.hashnode.dev` cross-links to the author's own articles; these should be repointed to relative URLs (`/slug/`).
+- In-body cross-links between the author's own articles must use relative URLs (`/slug/`), not `vikrantjain.hashnode.dev` URLs.
 - Never publish real client/vendor/person/financial identifiers in any article.
