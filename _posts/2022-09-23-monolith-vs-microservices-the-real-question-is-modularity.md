@@ -16,7 +16,7 @@ A monolith is a geological feature consisting of a single massive stone or rock,
 
 In software, the term “monolith” is usually used to describe **how an application is packaged and deployed** (a single deployable unit). “Modular” vs “non-modular” describes **how the code inside is structured** (boundaries, contracts, dependencies).
 
-## What people usually mean by a monolith
+### What people usually mean by a monolith
 
 * Application with a single module or multi-module large code base.
 * It is deployed as a single application (one deployable unit).
@@ -26,18 +26,18 @@ In software, the term “monolith” is usually used to describe **how an applic
 
 Monolithic designs have worked successfully for years. With the advent of cloud platforms, many organizations moved toward microservices, but monoliths still remain a very practical choice in many scenarios.
 
-## Use cases for a monolith application
+### Use cases for a monolith application
 
 * An application that is not distributed multi-regional and/or multi-tenant and not expecting varying unlimited loads can be successfully developed and delivered as a monolith.
 * Organizations on a budget, with a small team and a need for fast time-to-market, can start with a monolith and still deploy it to cloud or on-premise with a predictable overall cost.
 * Many enterprise applications are developed and operated as monoliths (often with multiple internal modules).
 
-## Where monoliths hurt
+### Where monoliths hurt
 
 * Individual components or modules cannot scale independently. For example, if a “sales” module gets a seasonal traffic spike compared to “inventory” or “users”, you still need to scale the whole application.
 * Horizontal scaling of the whole application can get costly, especially if all modules don’t need to be scaled out.
 
-## What is a module?
+### What is a module?
 
 A system is modular if it’s composed of independent, loosely coupled components integrated via well-defined interfaces and dependencies. A simple analogy is computer hardware: memory, storage, and USB are separate modules with a well-defined interface on the motherboard. Internals are hidden from other modules (encapsulation), and replacements are possible as long as the interface stays compatible.
 
@@ -50,7 +50,7 @@ Similarly, a software module should have:
 
 Modularity enables parallel development, testing, and releases with reduced complexity.
 
-## Are monoliths bad?
+### Are monoliths bad?
 
 There’s a common belief that monoliths are always bad and should be avoided. To reason about that, it helps to separate three patterns:
 
@@ -168,7 +168,7 @@ graph TD
 * Avoid “shared persistence”: don’t let other modules write directly to your module’s tables/collections.
 * Keep cross-module communication explicit (public APIs/events), and measure it (module-level metrics).
 
-## Conclusion
+### Conclusion
 
 The application can be a monolith or microservices — **modularity is what determines long-term success**, whether on cloud or on-premise. A design is modular when contracts are defined and documented, external dependencies are explicit, and internal logic/dependencies are encapsulated behind clear boundaries.
 

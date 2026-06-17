@@ -50,7 +50,7 @@ To understand the necessity of the AI shift, we must acknowledge the weight of c
 
 * * *
 
-## The Evolution of AI Adoption
+### The Evolution of AI Adoption
 
 ### The Initial AI Phase: Productivity Boosting
 
@@ -84,7 +84,7 @@ Without a solid solution and clear requirements, AI can generate code, but it ca
 
 * * *
 
-## The AI-Driven Development Team
+### The AI-Driven Development Team
 
 In an AI-driven development team, the execution model shifts from managing people to engineering context:
 
@@ -111,7 +111,7 @@ Transitioning to this latest phase is a big and inevitable change for organizati
 
 * * *
 
-## What Is Still Missing (And Why Humans Still Matter)
+### What Is Still Missing (And Why Humans Still Matter)
 
 Even with increasingly capable AI systems, there are two areas where AI still struggles—and where humans remain essential:
 
