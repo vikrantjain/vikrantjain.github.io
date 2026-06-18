@@ -57,6 +57,4 @@ GitHub Pages does **not** render mermaid on its own (that's a github.com repo-vi
 
 ## Open items / constraints
 
-- The **multi-agent article** (`../articles/claude-chat/article.md`) is a contracted client deliverable and must NOT be published until written client approval. It is deliberately not in this repo yet.
 - In-body cross-links between the author's own articles must use relative URLs (`/slug/`), not `vikrantjain.hashnode.dev` URLs.
-- Never publish real client/vendor/person/financial identifiers in any article.
