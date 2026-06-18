@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "A Coding Agent Is Not an IDE"
-description: "Why your AI coding rollout isn't producing 10x — and what your organization has to redesign to get there."
+subtitle: "Why your AI coding rollout isn't producing 10x — and what your organization has to redesign to get there."
+description: "Per-seat AI coding licenses won't deliver 10x. Coding agents take on roles, not slots — and your org's workflow, visibility, and docs must change too."
 date: 2026-05-07
 permalink: /coding-agent-is-not-an-ide/
 share-img: "/assets/images/og-coding-agent-is-not-an-ide.png"

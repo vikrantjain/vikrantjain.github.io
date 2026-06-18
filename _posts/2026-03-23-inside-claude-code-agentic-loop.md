@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "What Happens After You Hit Enter in Claude Code?"
+subtitle: "A mental model of the agentic loop, permission pipeline, and subagent isolation inside Claude Code"
 description: "A mental model of the agentic loop, permission pipeline, and subagent isolation inside Claude Code"
 date: 2026-03-23
 permalink: /inside-claude-code-agentic-loop/

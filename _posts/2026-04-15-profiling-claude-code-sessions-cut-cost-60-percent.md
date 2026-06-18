@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "I Cut My AI Coding Agent's Cost by 60% — By Watching What It Actually Does"
+subtitle: "Profiling Claude Code sessions with OpenTelemetry reveals where tokens and time really go — and how to engineer the waste out"
 description: "Profiling Claude Code sessions with OpenTelemetry reveals where tokens and time really go — and how to engineer the waste out"
 date: 2026-04-15
 permalink: /profiling-claude-code-sessions-cut-cost-60-percent/

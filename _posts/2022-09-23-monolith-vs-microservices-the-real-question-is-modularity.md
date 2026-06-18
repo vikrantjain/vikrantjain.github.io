@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Monolith vs Microservices: The Real Question Is Modularity"
+subtitle: "Monolith vs microservices matters less than modular vs non-modular — and a modular monolith is often the best default."
+description: "Monolith vs microservices matters less than modular vs non-modular — and a modular monolith is often the best default."
 date: 2022-09-23
 permalink: /monolith-vs-microservices-the-real-question-is-modularity/
 share-img: "/assets/images/og-monolith-vs-microservices.jpeg"

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How AI Brings Efficiency with Major Organizational Change"
+subtitle: "Discover how AI is transforming software development by solving coordination, context, and execution challenges while reshaping organizational structures."
 description: "Discover how AI is transforming software development by solving coordination, context, and execution challenges while reshaping organizational structures."
 date: 2026-02-04
 permalink: /ai-efficiency-organizational-change/

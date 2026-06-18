@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "I Built a Way for Claude Code Agents to Talk to Each Other Across Machines"
-description: "~190 lines of TypeScript, a WebSocket broker, and MCP channels — distributed AI teams are closer than you think"
+subtitle: "~190 lines of TypeScript, a WebSocket broker, and MCP channels — distributed AI teams are closer than you think"
+description: "I connected multiple Claude Code instances across machines using MCP channels and a WebSocket broker. Here's how distributed AI teams work."
 date: 2026-04-02
 permalink: /distributed-claude-code-agents-across-machines/
 share-img: "/assets/images/og-distributed-claude-code-agents.png"

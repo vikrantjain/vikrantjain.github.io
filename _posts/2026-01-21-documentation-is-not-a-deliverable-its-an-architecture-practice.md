@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Documentation Is Not a Deliverable. It's an Architecture Practice."
+subtitle: "Meaningful documentation validates requirements, enforces architectural intent, exposes deviations early, and prevents entire classes of failures."
 description: "Meaningful documentation validates requirements, enforces architectural intent, exposes deviations early, and prevents entire classes of failures."
 date: 2026-01-21
 permalink: /documentation-is-not-a-deliverable-its-an-architecture-practice/
