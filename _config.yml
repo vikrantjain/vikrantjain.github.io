@@ -28,8 +28,8 @@ share-links-active:
 
 # --- Post list / search ---
 post_search: true
-feed_show_excerpt: true
-feed_show_tags: true
+feed_show_excerpt: false
+feed_show_tags: false
 excerpt_length: 50
 
 # --- Build / formatting ---

@@ -9,7 +9,7 @@
   body,
   .navbar,
   .post-heading .post-title,
-  .post-heading .post-subtitle,
+  .post-heading .post-subheading,
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
@@ -49,13 +49,65 @@
   .post-heading {
     text-align: center;
   }
-  .post-heading .post-title {
+  /* Header heading block: a centered column wide enough for short titles to
+     stay on one line, but capped so long titles wrap with side margins
+     instead of running edge-to-edge. Scoped to .intro-header so the article
+     body column is unaffected. */
+  .intro-header .row > [class*="col-"] {
+    flex: 0 0 100%;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .intro-header .post-heading h1 {
     font-weight: 800;
     letter-spacing: -0.03em;
+    color: #1a1a1a;
+    /* Fluid: ~32px on phones, up to 56px on desktop (keeps the desktop
+       one-line ratio while scaling down on small screens like Hashnode). */
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    overflow-wrap: break-word;
   }
-  .post-heading .post-subtitle {
+  .intro-header .post-heading .post-subheading {
     font-weight: 400;
-    color: #555;
+    color: #6b6f76;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-top: 0.6rem;
+    /* Title spans the full-width header; keep the subtitle within the
+       article content width and centered so it wraps instead of running
+       into one over-long line on wide screens. */
+    max-width: 730px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Home / post list — Hashnode-style: smaller, left-aligned, muted */
+  /* Widen the listing column so subtitles only wrap when genuinely long
+     (scoped to the post list, so the article body column stays narrow). */
+  .row > [class*="col-"]:has(> .posts-list) {
+    flex: 0 0 100%;
+    max-width: 1030px;   /* content ~1000px: the longest one-line subtitle fits; longer ones wrap */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .post-preview {
+    text-align: left;
+  }
+  .post-preview .post-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+  }
+  .post-preview .post-subtitle {
+    font-size: 1rem;
+    color: #6b6f76;
+    margin-top: 0.3rem;
+  }
+  .post-preview .post-meta {
+    font-size: 0.9rem;
+    color: #828282;
   }
 
   /* Code: soft rounded blocks, subtle inline highlight */
