@@ -9,25 +9,26 @@ share-img: "/assets/images/og-three-claude-code-instances-one-feature.png"
 tags: [claude-code, ai-agents, multi-agent, mcp, software-engineering]
 ---
 
+
 A feature I was building touched three services at once: a payment backend, a sales-order backend, and a web frontend. The normal way to build that is three teams, three backlogs, a contract meeting that gets scheduled for next Tuesday, and an integration phase two weeks later where the parts that were supposed to fit don't.
 
 I built it in about eight hours instead — with three Claude Code agents, one per service, coordinating with each other in real time while a single human (me) held the brakes.
 
-This is a build log of how that worked: the workflow that kept three parallel codebases coherent, the guardrails that kept three autonomous agents from stepping on each other, and — just as useful to the next person — where the friction showed up and why it stayed cheap to fix.
+This is a build log of how that worked: the workflow that kept three parallel codebases coherent, the guardrails that kept three autonomous agents from stepping on each other, and, just as useful to the next person, where the friction showed up and why it stayed cheap to fix.
 
-It's also a sequel. A while back I [built a way for Claude Code instances to talk to each other across machines](/distributed-claude-code-agents-across-machines/) — a proof-of-concept MCP-channel bridge called [`claude-code-chat`](https://github.com/vikrantjain/claude-code-chat). That article ended on a toy demo: three agents building a counter app. Since then I've turned the prototype into a proper Claude Code plugin — [`claude-chat`](https://github.com/vikrantjain/claude-chat) — that drops into any project. The honest open question the demo left was whether the pattern survives contact with real, production-shaped work. This is the answer — run on the plugin, not the prototype.
+It's also a sequel. A while back I [built a way for Claude Code instances to talk to each other across machines](/distributed-claude-code-agents-across-machines/) — a proof-of-concept MCP-channel bridge I called `claude-code-chat`. That article ended on a toy demo: three agents building a counter app. Since then I've turned the prototype into a proper, installable Claude Code plugin, [**`claude-chat`**](https://github.com/vikrantjain/claude-chat) — early still, but a real, reusable plugin rather than a one-off script. The honest open question the demo left was whether the pattern survives contact with real, production-shaped work. This is the answer — run on the plugin, not the prototype.
 
-> **Scope note:** this is a methodology record, not a feature design — a general way of working I now reach for, shown here on one real project. The feature happened to be optional 3D Secure (3DS — the "verify it's really the cardholder" step on card payments), but the feature and its details belong to the project; what's reusable — and all this article is really about — is *how three agents built it together*.
+> **Scope note:** this is a methodology record, not a feature design — a general way of working I now reach for, shown here on one real project. The feature happened to be optional 3D Secure (3DS — the "verify it's really the cardholder" step on card payments), but the feature and its details belong to the project; what's reusable, and all this article is really about, is *how three agents built it together*.
 
 ---
 
 ### From "agents can talk" to "agents ship together"
 
-The first article built the plumbing; since then it's become an installable plugin. `claude-chat` is an MCP channel server you add to a project: each Claude Code instance runs it alongside itself, connects to a shared broker, and gets two tools — `send_message` (broadcast or directed) and `list_participants`. Messages from other instances arrive inline in the conversation, so an agent just *sees* them the way it sees anything else. No polling, no inbox.
+The first article built the plumbing; since then it's become an installable plugin. `claude-chat` is an MCP channel server you add to a project: each Claude Code instance runs it alongside itself, connects to a shared WebSocket broker (the relay every instance meets on), and gets two tools — `send_message` (broadcast or directed) and `list_participants`. Inbound messages don't wait for a tool call: the server uses Claude Code's experimental [Channels API](https://code.claude.com/docs/en/channels) to inject them *inline* in the conversation, so an agent just *sees* a peer's message the way it sees anything else. No polling, no inbox.
 
-Why not just use sub-agents or agent teams? Both are real Claude Code features, and the first article walked through the hierarchy. The short version: sub-agents are workers a single session spawns and that report back to it — one machine, one parent. Agent teams let sessions coordinate as peers, but still only on one machine. The distributed model is the only one that crosses machines — which is the whole point once your services and the people steering them aren't in one place. It also keeps each session lean: every instance carries only its own repo's context, instead of one session trying to hold all three codebases at once.
+Why not just use sub-agents or agent teams? Both are real Claude Code features — and both run under a single coordinating session: sub-agents are workers one session spawns and that report back to it; agent teams let separate sessions work as peers, but a single lead session owns the shared task list they coordinate through. The distributed model is different in kind — independent peer sessions that meet on a channel — which is what lets the work span the separate machines, and people, your services actually live on. It also keeps each session lean: each instance carries only its own repo's context, not all three codebases at once.
 
-That original demo proved the messages flow. It didn't prove the *coordination* — whether agents handed a real, interdependent feature would actually divide the work, agree on an interface, and integrate without a human stitching every seam by hand.
+That original demo proved the messages flow. It didn't prove the *coordination* — whether agents given a real, interdependent feature would actually divide the work, agree on an interface, and integrate without a human stitching every seam by hand.
 
 So I set up the real test. Three services that genuinely depend on each other, one shared contract between them, an external payment gateway in the loop, and a feature that had to work end-to-end against a live sandbox. Three agents, three repos, one human. Go.
 
@@ -63,8 +64,8 @@ flowchart TB
       UI[web-ui<br/>Claude instance]
     end
 
-    U -. approvals, start backend services,<br/>gateway portal access .-> PAY
-    U -. own-repo approval .-> SO
+    U -. approvals, start backend,<br/>gateway portal access .-> PAY
+    U -. own-repo approval,<br/>start backend .-> SO
     U -. own-repo approval .-> UI
 
     PAY <-->|contract and status| SO
@@ -89,8 +90,9 @@ The session ran in a clear shape: agree on the interface before anyone writes fe
 
 ```mermaid
 flowchart TD
-    A[Plan mode: research and plan<br/>parallel read-only sub-agents per repo] --> B{Human approves plan}
+    A[Plan mode: research own repo<br/>learn peers over the channel + initial brief] --> B{Human approves plan}
     B -->|yes| C[Draft cross-service contract]
+    B -->|needs work| A
     C --> D[Ratify with consumers over claude-chat<br/>consumers review, web-ui runs an API spike]
     D --> E[[Freeze contract v1]]
     E --> F1[payment-service builds its slice]
@@ -109,7 +111,7 @@ flowchart TD
 
 Walking the stages:
 
-**Plan, gated.** The coordinator explored all three repos first — using parallel read-only sub-agents, one per repo — surfaced the genuine design forks to me, and only moved once I approved. Nothing got built on a guess about how the other services worked.
+**Plan, gated.** The coordinator planned without ever reading the other repos. My initial prompt sketched the neighboring services, and it learned the rest by *asking the other agents over the channel* — what each service did and what it was capable of. From that it surfaced the genuine design forks to me, and only moved once I approved. Nothing got built on a guess about how the other services worked — and nothing required reaching into another team's code to find out. The understanding arrived over the channel, exactly as it would if the three agents sat on three different machines.
 
 **Contract-first.** Before a line of feature code, the coordinator drafted the cross-service contract — the shape of the data passing between services — and *circulated it for ratification* instead of declaring it.
 
@@ -161,7 +163,7 @@ The coordinator drafts and sends to both consumers, kicking the frontend off on 
 
 ### The steering wheel kept moving
 
-The surprise wasn't that the agents coordinated — it was that none of them stayed in charge. Leadership followed the work: whoever owned the flow in play took the wheel, steered it, and handed it on — and the agents worked those handoffs out among themselves, announcing each one over the channel rather than asking permission.
+The surprise wasn't that the agents coordinated — it was that none of them stayed in charge, `payment-service` included. It had opened the session and kept the record — coordinator in the clerical sense — but bookkeeping isn't authority. Leadership followed the work: whoever owned the flow in play took the wheel, steered it, and handed it on — and the agents worked those handoffs out among themselves, announcing each one over the channel rather than asking permission.
 
 - **Build — `payment-service` drove.** It opened the coordination, worked the 3DS server logic through with `order-service`, then turned to `web-ui` to help build the browser changes against the frozen contract.
 - **End-to-end UI testing — `web-ui` drove.** Once the slices were ready, `web-ui` took the wheel and steered the live test runs. `payment-service` and `order-service` dropped into support — watching their own logs and fixing their own bugs as the tests flushed them out, while `web-ui` fixed its own.
@@ -207,6 +209,10 @@ sequenceDiagram
     end
 ```
 
+The wheel changed hands twice; I assigned it zero times.
+
+*(It all runs on one open-source plugin, [`claude-chat`](https://github.com/vikrantjain/claude-chat) — the code's there if you want to see how.)*
+
 ---
 
 ### The guardrails that made autonomy safe
@@ -215,7 +221,7 @@ Three autonomous agents with file-write and shell access is a lot of loaded guns
 
 **Human gates on anything irreversible or outward-facing.** Approving the plan, accessing the external gateway portal, and committing each repo were all human-gated. And because each agent ran in its own terminal, I could watch all three at once, review exactly what each one was doing, and approve or reject every change as it came up. Agents proposed; the human disposed. The gates sat exactly at the steps you can't cleanly undo.
 
-Service start and stop, by contrast, sat on a dial I set two ways on purpose. For the two backends the agent would ask and I'd start or restart it — even though each backend agent was fully equipped to do that itself. The web-ui agent I let run the entire loop unattended: it built, started, tested, hit a defect, fixed it, restarted, and re-tested its own service with me only watching. That contrast is the lesson — an agent can own the whole build–test–fix cycle end to end, so gating a reversible, internal step like a service restart is a choice you make, not a limit the approach imposes. I simply chose to keep a closer hand on the backends than on the frontend.
+Service start and stop, by contrast, sat on a dial I set two ways on purpose. For the two backends the agent would ask and I'd start or restart it — even though each was fully equipped to do it itself. The web-ui agent I let run the entire loop unattended: it built, started, tested, hit a defect, fixed it, restarted, and re-tested its own service with me only watching. That's the proof, not a hypothetical — web-ui ran the full build–test–fix cycle on its own, so the two backends could have too. Gating a reversible, internal step like a service restart is a choice you make, not a limit the approach imposes.
 
 **Ownership boundaries — each agent edits only its own service.** Each instance was launched inside its own repo, so it could only edit *its own* code — `order-service` physically could not touch `payment-service`'s files, and the reverse. When one agent needed a change in another's territory, it *requested it over the channel* and the owner made the edit. Talk freely, request anything; only the owner writes. Data ownership rides on the same principle, and you can enforce it as hard as the work demands: per-service database credentials give each agent rights to only its own schema — exactly how you'd scope a microservice's own database user. The approach lets you draw that line at whatever strictness the stakes call for.
 
@@ -223,9 +229,9 @@ Service start and stop, by contrast, sat on a dial I set two ways on purpose. Fo
 
 **Channel messages treated as untrusted input.** This is the subtle one. A message from another agent is awareness, not an instruction. No agent executed imperative text from the channel as though a human had typed it. Decisions routed through the human or through the agent's own judgment — never through "another agent told me to."
 
-**Verify against an authority, not memory.** The decisive bug fix in this whole session came from reading the gateway's actual API schema instead of trusting a previously-written internal design note. The note — echoing the vendor's own docs — marked a field optional that the live API actually required. "Confirm against the source" was a standing rule, and it earned its keep.
+**Verify against an authority, not memory.** The session's decisive fix came from reading the gateway's *live* API schema rather than trusting an internal note that — echoing the vendor's own docs — marked a required field optional. "Confirm against the source" was a standing rule, and it earned its keep.
 
-**Test live, across tiers, early.** Running the full chain against the real sandbox — not just unit tests — surfaced defects unit tests structurally cannot catch: a request-shape mismatch the gateway rejected, a client-side lifecycle bug in the browser SDK, and the same optional-but-required field bug from above, caught only when the live API rejected the call.
+**Test live, across tiers, early.** Running the full chain against the real sandbox — not just unit tests — surfaced defects unit tests structurally cannot catch: a request-shape mismatch the gateway rejected, and a client-side lifecycle bug in the browser SDK that only showed up once the real SDK was driving a real browser.
 
 Put together, those rules form a single control loop — agents propose and edit in the middle, gates bound the edges:
 
@@ -263,17 +269,19 @@ Here that calendar collapsed into a single working session. The compression came
 - **Zero scheduling latency.** The three "teams" were online at once and answered each other within the same minute. No calendars, no standups, no timezones, no waiting for another team to get to it. The only thing anyone waited on was a human approval gate.
 - **Instant ramp, no context-switching.** Each agent already held its repo's full context. No onboarding, no "let me page this back in," no penalty for three slices progressing at once.
 - **Contract-first removed the integration phase.** Because the interface was frozen before parallel work began, integration wasn't a late, risky event — the slices fit when they met. The classic "each part works alone but not together" week largely didn't happen.
-- **Minutes-long feedback loops.** When live testing surfaced the gateway-schema bug, it was diagnosed, fixed in the owning repo, rebuilt, and re-tested in the same session — not filed, triaged, and scheduled across teams.
+- **Minutes-long feedback loops.** When live testing surfaced a defect, it was diagnosed, fixed in the owning repo, rebuilt, and re-tested in the same session — not filed, triaged, and scheduled across teams.
 
-One honest number to anchor this: the end-to-end session — including the upfront research and planning — took **about eight hours**. Set that against however long the same three-service feature would take run as three separate teams in your own org, and you have your multiplier. For my baseline that comparison runs to days, often weeks — and most of it isn't spent coding, it's spent waiting: in queues, between handoffs, and in the integration phase at the end.
+One number to anchor this — and an honest breakdown of it. End to end, the session took **about eight hours** of wall-clock time. But the agents were only actively working for maybe **two** of those hours. The other six were mine, and they split in two. Part was first-run cost I won't pay again: standing up the environment, wiring the per-agent access controls, testing the setup held together, and learning to drive three agents at once. The rest won't go away — researching the problem, the high-level design, planning the approach, and the context and expectations I set for the agents up front. That work recurs on every project and scales with the problem's complexity, not with the tooling; it's the upfront human judgment any serious AI effort needs to get a result worth keeping, not overhead this approach adds.
 
-What this is *not*: a claim that it ran unattended or instantly. The critical path was the **human** — plan approval, starting the backend services, the live-test loop — and that's exactly where the time went. The durable lesson is narrower and more useful than "AI is fast": agent collaboration removes the *inter-team* latency that usually dominates a multi-service feature, which leaves your judgment, not the calendar, as the thing setting the pace.
+Set the session against however long the same three-service feature would take if run as three separate teams in your own org, and you have your multiplier; for my baseline that runs to days, often weeks.
+
+That breakdown is the whole point. What this is *not* is a claim that it ran unattended or instantly. The critical path was the **human** — the research, the design, the plan approval, starting the backend services, the live-test loop. (The agents' two hours were the cheap part — which also kept the compute modest: three instances running for two hours, not eight.) The durable lesson is narrower and more useful than "AI is fast": agent collaboration removes the *inter-team* latency that usually dominates a multi-service feature, which leaves your judgment, not the calendar, as the thing setting the pace.
 
 ---
 
 ### The friction was ordinary — the recovery wasn't
 
-Every collaborative build has friction, whether the collaborators are people or agents. This session had its share. What's worth noticing isn't that the friction showed up — it always does — but how little it cost to clear. None of what follows is a shortcoming of the approach; it's the ordinary cost of any team building together, and in a few cases the approach absorbed it faster than a human team would.
+Every collaborative build has friction, whether the collaborators are people or agents. This session had its share. What's worth noticing isn't that the friction showed up — it always does — but how little it cost to clear. It's the ordinary cost of any team building together, and in a few cases the approach absorbed it faster than a human team would.
 
 **A peer's state got misjudged — and the structure caught it.** At one point `payment-service` assumed `web-ui` had built its slice when it was still at design. This is inherent to anyone coordinating asynchronously: you see a peer's last message, not its true state. Human teams hit this constantly, where it becomes the "I thought you were handling that" conflicts and blocked work that quietly eat a calendar. Here it cost almost nothing — the human coordinator exists for exactly this, and live end-to-end testing would have surfaced the mismatch regardless. It was caught and corrected in the same session. The working habit is simple: ask "is your slice done?" and confirm, rather than infer.
 
@@ -332,7 +340,9 @@ The hard part is the human's. The gates, the peer-state discipline, the unstated
 
 > **Personal insight:** I [wrote earlier](/distributed-claude-code-agents-across-machines/) that each Claude Code instance already behaves like a team — a lead coordinating specialized workers — and that a channel could connect those teams across machines. Watching three of them negotiate a contract, divide a real feature, and catch each other's gaps turned that from a tidy diagram into something I could point at. The surprise wasn't that it worked. It was *where* the work moved: off the calendar, off the inter-team back-and-forth, and squarely onto my judgment at a handful of gates. That's not "AI replaces the team." It's the coordination tax disappearing and the judgment staying exactly where it was.
 
-The pieces are early and the rough edges are real — the friction above isn't a footnote, it's the manual. But the direction is clear enough to act on: if you've got a feature spanning services and a backlog of coordination overhead to match, this is a pattern you can run today. The [`claude-chat` plugin](https://github.com/vikrantjain/claude-chat) is open source and drops into any project — install it, point your instances at a broker, and try it on something real.
+The pieces are early and the rough edges are real — the friction above isn't a footnote, it's the manual. But the direction is clear enough to act on: if you've got a feature spanning services and a backlog of coordination overhead to match, this is a pattern you can run today. The [**`claude-chat` plugin**](https://github.com/vikrantjain/claude-chat) is open source and free — a research-preview build on that experimental Channels API — early enough that each instance launches behind a flag literally named `--dangerously-load-development-channels` — with a README that walks the whole setup end to end.
+
+And you don't need three services to feel it. The lowest-effort try is two terminals: [clone the repo](https://github.com/vikrantjain/claude-chat), stand up one broker (`bunx claude-chat-broker`), launch two Claude Code instances pointed at it — each with that same development-channels flag — and watch them discover each other and talk. Once the channel clicks, the three-service version is just more of the same. It's built for real, multi-service work, not a demo — but you can prove the idea to yourself in a single sitting.
 
 ---
 
