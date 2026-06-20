@@ -16,7 +16,7 @@ Personal blog of Vikrant Jain, published with **Jekyll** on **GitHub Pages**.
 - `_posts/` — published articles, `YYYY-MM-DD-slug.md`. Everything here is live.
 - `_includes/mermaid.html` — loads mermaid.js and renders ` ```mermaid ` code blocks as diagrams.
 - `_includes/styles.html` — Hashnode-style CSS (Inter font, reading sizing, centered titles, full-width thin `hr`, code/quote styling).
-- `_config.yml` — site config. Both includes are injected on every page via the `head-extra` default (a Beautiful Jekyll hook). `permalink: /:title/`.
+- `_config.yml` — site config. Both includes are injected on every page via the `head-extra` default (a Beautiful Jekyll hook). `permalink: /:title/`. `url: https://vikrantjain.github.io` is set explicitly so `jekyll-seo-tag`/`jekyll-feed`/`jekyll-sitemap` emit absolute URLs (og:image, RSS, sitemap) instead of relying on GitHub Pages auto-injection; `_config_local.yml` overrides it to `http://localhost:4000` for local preview.
 - `assets/images/` — images referenced by posts.
 - `index.md` (`layout: home`), `about.md` (`layout: page`).
 
