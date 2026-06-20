@@ -148,6 +148,20 @@
     margin: 3rem auto;
   }
 
+  /* Home brand header ("The Architect's Ledger") — sized just above the
+     post-list item title/subtitle rather than as a large banner. Scoped to the
+     home page (the only page with a post list) so the About header is untouched. */
+  body:has(.posts-list) .intro-header .page-heading h1 {
+    font-size: 1.7rem;          /* list title is 1.5rem; a touch more */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+  }
+  body:has(.posts-list) .intro-header .page-subheading {
+    font-size: 1.1rem;          /* list subtitle is 1rem; a touch more */
+    color: #6b6f76;
+  }
+
   /* Center rendered mermaid diagrams */
   .mermaid {
     display: flex;
