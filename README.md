@@ -8,7 +8,12 @@ needed.
 
 - `_posts/` — published articles, named `YYYY-MM-DD-slug.md`. Everything here
   is live.
-- `assets/images/` — images referenced by posts.
+- `_includes/` — custom includes layered on the remote theme: `styles.html`
+  (site CSS), `mermaid.html` (diagram rendering), `discuss-cta.html` (post
+  discussion footer).
+- `assets/images/` — images referenced by posts, including `og-<slug>` social
+  cards.
+- `index.md` (home), `about.md`, `tags.html` (tag index) — top-level pages.
 - `_config.yml` — site config. `permalink: /:title/` locks clean URLs.
 
 ## Publishing workflow

@@ -1,6 +1,8 @@
 # CLAUDE.md
 
-Guidance for working in this repo.
+Guidance for working in this repo. For the file map, publishing workflow, and
+local preview, see **README.md** — this file covers the conventions and gotchas
+that aren't obvious from the files themselves.
 
 ## What this is
 
@@ -8,17 +10,17 @@ Personal blog of Vikrant Jain, published with **Jekyll** on **GitHub Pages**.
 
 - **Repo:** `vikrantjain/vikrantjain.github.io` (root user site)
 - **Live URL:** https://vikrantjain.github.io/
-- **Theme:** Beautiful Jekyll via `remote_theme: daattali/beautiful-jekyll@6.0.1` (no local theme files; build is native GitHub Pages, no Actions)
+- **Theme:** Beautiful Jekyll via `remote_theme: daattali/beautiful-jekyll@6.0.1`. No local theme files; native GitHub Pages build (no Actions, no custom plugins beyond `jekyll-sitemap`/`jekyll-seo-tag`/`jekyll-feed`).
 - Articles were migrated from Hashnode (`vikrantjain.hashnode.dev`). Hashnode is no longer the source of truth — this repo is.
 
-## Structure
+## How customization works (don't break these)
 
-- `_posts/` — published articles, `YYYY-MM-DD-slug.md`. Everything here is live.
-- `_includes/mermaid.html` — loads mermaid.js and renders ` ```mermaid ` code blocks as diagrams.
-- `_includes/styles.html` — Hashnode-style CSS (Inter font, reading sizing, centered titles, full-width thin `hr`, code/quote styling).
-- `_config.yml` — site config. Both includes are injected on every page via the `head-extra` default (a Beautiful Jekyll hook). `permalink: /:title/`. `url: https://vikrantjain.github.io` is set explicitly so `jekyll-seo-tag`/`jekyll-feed`/`jekyll-sitemap` emit absolute URLs (og:image, RSS, sitemap) instead of relying on GitHub Pages auto-injection; `_config_local.yml` overrides it to `http://localhost:4000` for local preview.
-- `assets/images/` — images referenced by posts.
-- `index.md` (`layout: home`), `about.md` (`layout: page`).
+All site customization rides on Beautiful Jekyll hooks — there are **no** local theme-layout overrides:
+
+- `_includes/styles.html` (Hashnode-style CSS: Inter font, reading sizing, centered titles, full-width thin `hr`, code/quote/tag styling) and `_includes/mermaid.html` are injected on every page via the `head-extra` default in `_config.yml`. Posts also get `_includes/discuss-cta.html` via the `after-content` default.
+- `_config.yml` sets `url: https://vikrantjain.github.io` explicitly so `jekyll-seo-tag`/`jekyll-feed`/`jekyll-sitemap` emit absolute URLs (og:image, RSS, sitemap) instead of relying on GitHub Pages auto-injection. `_config_local.yml` overrides it to `http://localhost:4000` for preview.
+- **Remote themes ship `_layouts`/`_includes`/`_sass` only — not root-level pages.** That's why `tags.html` is recreated locally (with an explicit `permalink: /tags/`); without it the theme's tag index isn't inherited and every post's `#tag` link 404s. Its chip/section styling lives in `styles.html`.
+- **Mermaid:** GitHub Pages does **not** render mermaid on its own (that's a github.com repo-view feature only). It works here only because `mermaid.html` loads mermaid.js site-wide. Don't remove the include, and don't replace diagrams with images.
 
 ## Post frontmatter convention
 
@@ -52,25 +54,12 @@ Body conventions (kept generator-agnostic for portability):
 - Section headings use `###` (h3). The title lives in frontmatter. Do not use `#`/`##` in the body.
 - Mermaid goes in ` ```mermaid ` fenced blocks (rendered live site-wide — do not replace with images).
 - No Liquid tags inside post bodies.
+- In-body cross-links between the author's own articles use relative URLs (`/slug/`), not `vikrantjain.hashnode.dev` URLs.
 
-## Mermaid
+## About page
 
-GitHub Pages does **not** render mermaid on its own (that's a github.com repo-view feature only). It works here because `_includes/mermaid.html` loads mermaid.js and is included on every page via `head-extra`. Don't remove it.
-
-## Publishing workflow
-
-`main` always equals the live site; GitHub Pages auto-builds on push. Work in progress lives on branches (Pages never builds them).
-
-1. Draft in the separate `../articles/` working folder.
-2. Branch off `main`, add the post to `_posts/` with the frontmatter above.
-3. Open a PR (the "ready to publish?" checkpoint), then merge to `main`.
-
-## Local preview
-
-No Ruby is installed on the host — preview runs in the `ruby:3.3` Docker image.
-The exact `docker run` command (and a `jekyll build` compile-check variant) is
-in **README.md** under "Local preview". Site serves at http://localhost:4000.
-
-## Open items / constraints
-
-- In-body cross-links between the author's own articles must use relative URLs (`/slug/`), not `vikrantjain.hashnode.dev` URLs.
+`about.md` is intentionally **evergreen**: it states identity, the blog's
+thesis, durable domain experience, and patents — and deliberately omits anything
+time-bound (current employer/role, year counts, active projects). LinkedIn and
+GitHub links carry everything that changes, so the page stays low-maintenance.
+Keep it that way: don't add facts that need editing as roles or dates change.
