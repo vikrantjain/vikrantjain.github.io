@@ -48,7 +48,7 @@ defaults:
     values:
       layout: "post"
       readtime: true
-      head-extra: [mermaid.html, styles.html]
+      head-extra: [mermaid.html, styles.html, toc.html]
       after-content: [discuss-cta.html]
   - scope:
       path: ""
