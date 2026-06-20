@@ -1,0 +1,35 @@
+{%- comment -%}
+  Renders a "Discuss this post" footer from the post's `discuss` frontmatter map, e.g.:
+
+    discuss:
+      linkedin: "https://www.linkedin.com/posts/..."
+      reddit:   "https://www.reddit.com/r/..."
+      x:        "https://x.com/..."
+
+  Each entry is optional; an empty value is skipped. Nothing renders if `discuss`
+  is absent. Platform labels are friendly-cased; unknown keys fall back to capitalize.
+{%- endcomment -%}
+{%- if page.discuss -%}
+  {%- assign rendered = 0 -%}
+  <div class="discuss-cta">
+    <span class="discuss-cta-label">💬 Discuss this post:</span>
+    {%- for link in page.discuss -%}
+      {%- assign url = link[1] -%}
+      {%- if url and url != "" -%}
+        {%- if rendered != 0 %}<span class="discuss-cta-sep">·</span>{% endif -%}
+        {%- assign key = link[0] | downcase -%}
+        {%- case key -%}
+          {%- when "linkedin" -%}{%- assign name = "LinkedIn" -%}{%- assign icon = "fab fa-linkedin" -%}
+          {%- when "x" or "twitter" -%}{%- assign name = "X" -%}{%- assign icon = "fab fa-x-twitter" -%}
+          {%- when "reddit" -%}{%- assign name = "Reddit" -%}{%- assign icon = "fab fa-reddit" -%}
+          {%- when "hackernews" or "hn" -%}{%- assign name = "Hacker News" -%}{%- assign icon = "fab fa-hacker-news" -%}
+          {%- when "github" -%}{%- assign name = "GitHub" -%}{%- assign icon = "fab fa-github" -%}
+          {%- when "mastodon" -%}{%- assign name = "Mastodon" -%}{%- assign icon = "fab fa-mastodon" -%}
+          {%- else -%}{%- assign name = link[0] | capitalize -%}{%- assign icon = "fas fa-comment" -%}
+        {%- endcase -%}
+        <a href="{{ url }}" target="_blank" rel="noopener"><i class="{{ icon }}" aria-hidden="true"></i> {{ name }}</a>
+        {%- assign rendered = rendered | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}

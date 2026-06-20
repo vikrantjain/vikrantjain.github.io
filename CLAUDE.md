@@ -31,12 +31,22 @@ date: YYYY-MM-DD
 permalink: /slug/         # matches the original Hashnode slug
 share-img: "/assets/images/og-slug.png"  # OG/social card image; optional
 tags: [a, b, c]
+discuss:                  # optional; renders a "Discuss this post" footer
+  linkedin: "https://www.linkedin.com/posts/..."
+  reddit: "https://www.reddit.com/r/..."
 ---
 ```
 
 `share-img` sets the Open Graph / Twitter card image used when a post is shared.
 OG images live in `assets/images/` named `og-<slug>.<ext>`. All posts have one
 except `documentation-is-not-a-deliverable` (intentionally none).
+
+`discuss` is an optional map of platform → URL. Each entry is independent (omit
+any platform), and nothing renders if the whole block is absent — so you never
+hand-write a discussion link at the bottom of an article. Known keys
+(`linkedin`, `x`/`twitter`, `reddit`, `hackernews`/`hn`, `github`, `mastodon`)
+get friendly labels; any other key is title-cased. Rendered by
+`_includes/discuss-cta.html`, wired via the posts `after-content` default.
 
 Body conventions (kept generator-agnostic for portability):
 - Section headings use `###` (h3). The title lives in frontmatter. Do not use `#`/`##` in the body.
@@ -54,6 +64,12 @@ GitHub Pages does **not** render mermaid on its own (that's a github.com repo-vi
 1. Draft in the separate `../articles/` working folder.
 2. Branch off `main`, add the post to `_posts/` with the frontmatter above.
 3. Open a PR (the "ready to publish?" checkpoint), then merge to `main`.
+
+## Local preview
+
+No Ruby is installed on the host — preview runs in the `ruby:3.3` Docker image.
+The exact `docker run` command (and a `jekyll build` compile-check variant) is
+in **README.md** under "Local preview". Site serves at http://localhost:4000.
 
 ## Open items / constraints
 

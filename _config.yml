@@ -48,6 +48,7 @@ defaults:
     values:
       layout: "post"
       head-extra: [mermaid.html, styles.html]
+      after-content: [discuss-cta.html]
   - scope:
       path: ""
     values:

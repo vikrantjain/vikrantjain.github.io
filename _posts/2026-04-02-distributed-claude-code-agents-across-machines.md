@@ -7,6 +7,8 @@ date: 2026-04-02
 permalink: /distributed-claude-code-agents-across-machines/
 share-img: "/assets/images/og-distributed-claude-code-agents.png"
 tags: [claude-code, ai-agents, ai, distributed-systems, ai-tools]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_claudecode-claudeai-aiagents-share-7445312917002149888-ObGi"
 ---
 
 
@@ -250,8 +252,3 @@ The code is [open source](https://github.com/vikrantjain/claude-code-chat). It's
 Watch the collaboration session as scripted in the [project README](https://github.com/vikrantjain/claude-code-chat?tab=readme-ov-file#example-collaborative-app-development) — three Claude Code instances coordinating a full-stack feature in real-time:
 
 [![asciicast](https://asciinema.org/a/tI80IiE06r860gJP.svg)](https://asciinema.org/a/tI80IiE06r860gJP)
-
-* * *
-
-> [**Provide comments on LinkedIn**](https://www.linkedin.com/posts/vikrantj_claudecode-claudeai-aiagents-share-7445312917002149888-ObGi) (No extra login required!)
-

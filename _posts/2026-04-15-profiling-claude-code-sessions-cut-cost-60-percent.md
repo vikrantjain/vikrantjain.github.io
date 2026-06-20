@@ -7,6 +7,8 @@ date: 2026-04-15
 permalink: /profiling-claude-code-sessions-cut-cost-60-percent/
 share-img: "/assets/images/og-profiling-claude-code-sessions.png"
 tags: [claude-code, claudeai, ai-agents, observability, cost-optimization, llm]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_claudecode-claudeai-aiagents-share-7450385234539253760-lecH"
 ---
 
 
@@ -326,8 +328,3 @@ The tools referenced in this article:
 - **[claude-code-monitoring](https://github.com/vikrantjain/claude-code-monitoring)** — ClickStack docker-compose + HyperDX dashboard for Claude Code telemetry
 - **[claude-session-profiler](https://github.com/vikrantjain/claude-session-profiler)** — Claude Code plugin that analyzes session telemetry and produces optimization artifacts
 - **[claude-code-container](https://github.com/vikrantjain/claude-code-container)** — Docker container for running Claude Code in isolated, reproducible environments
-
----
-
-> [**Discuss on LinkedIn**](https://www.linkedin.com/posts/vikrantj_claudecode-claudeai-aiagents-share-7450385234539253760-lecH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAE5wE0BOQMw8zJ20QN54UvpVrw33kmUWjE) (No extra login required!)
-

@@ -209,8 +209,3 @@ When you understand the flow, things click into place: why `Shift+Tab` cycling t
 > **Personal Insight:** My background with **LangGraph** — where you explicitly define nodes, edges, and conditional routing in agent graphs — made this mental model feel natural. Claude Code's internal flow maps closely to concepts like state graphs, conditional edges, and tool nodes. If you're familiar with any agentic framework, you already have the vocabulary to reason about what Claude Code is doing under the hood.
 
 Use this understanding to work more effectively. Don't fight the architecture — work with it.
-
----
-
-> [**Provide comments on LinkedIn**](https://www.linkedin.com/in/vikrantj/) (No extra login required!)
-

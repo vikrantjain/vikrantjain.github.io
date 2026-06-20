@@ -7,6 +7,8 @@ date: 2026-05-07
 permalink: /coding-agent-is-not-an-ide/
 share-img: "/assets/images/og-coding-agent-is-not-an-ide.png"
 tags: [ai, ai-agents, engineering-management, software-development, software-architecture, futureofwork]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_aicoding-aiagents-engineeringleadership-share-7457998832144928768-ahGx"
 ---
 
 
@@ -168,8 +170,3 @@ And one accounting move that costs nothing and changes every conversation:
 > **Move your AI tooling budget out of the "tools" line item and into the "labor capacity" line item.**
 
 That single reclassification forces every conversation about AI spend to be a conversation about org design — which is the conversation you should have been having all along.
-
----
-
-> [**Provide comments on LinkedIn** (No extra login required!)](https://www.linkedin.com/posts/vikrantj_aicoding-aiagents-engineeringleadership-share-7457998832144928768-ahGx)
-

@@ -7,6 +7,8 @@ date: 2026-02-04
 permalink: /ai-efficiency-organizational-change/
 share-img: "/assets/images/og-ai-efficiency-organizational-change.png"
 tags: [ai, futureofwork, software-engineering, productivity, ai-agents, engineering-management, cursor, claudeai]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_ai-softwareengineering-futureofwork-activity-7424664378651656192-VsRR"
 ---
 
 For years, many software projects have failed not because of a lack of talent or effort, but due to systemic issues in how we build software. We often focus on the code, but the real "human tax" comes from the friction of coordination and context loss.
@@ -127,8 +129,3 @@ AI can dramatically improve execution speed, reduce context loss, and increase c
 ### Next Phase: Imagining What’s Ahead
 
 The next evolution might be AI not just executing well-designed solutions, but collaborating on design itself—understanding requirements, proposing architectures, and iterating with human guidance. If this becomes feasible, we could see a shift from execution-heavy teams to truly **hybrid human-AI innovation teams**, where humans focus on strategy and AI handles the heavy lifting of execution and coordination.
-
-* * *
-
-> [**Provide comments on LinkedIn** (No extra login required!)](https://www.linkedin.com/posts/vikrantj_ai-softwareengineering-futureofwork-activity-7424664378651656192-VsRR?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAE5wE0BOQMw8zJ20QN54UvpVrw33kmUWjE)
-

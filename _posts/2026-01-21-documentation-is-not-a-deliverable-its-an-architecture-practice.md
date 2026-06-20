@@ -6,6 +6,8 @@ description: "Meaningful documentation validates requirements, enforces architec
 date: 2026-01-21
 permalink: /documentation-is-not-a-deliverable-its-an-architecture-practice/
 tags: [software-architecture, system-design, documentation, devops, engineering-practices]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_softwarearchitecture-documentation-systemdesign-activity-7419733915051040768-d6Vb"
 ---
 
  
@@ -250,8 +252,3 @@ Documentation is not about writing more.
 When treated as a first-class architectural practice, documentation enforces intent, accountability, and alignment over time.
 
 Teams don’t just fix incidents faster — they prevent entire categories of failures from happening at all.
-
-* * *
-
-> [**Provide comments on LinkedIn** (No extra login required!)](https://www.linkedin.com/posts/vikrantj_softwarearchitecture-documentation-systemdesign-activity-7419733915051040768-d6Vb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAE5wE0BOQMw8zJ20QN54UvpVrw33kmUWjE)
-

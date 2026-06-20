@@ -343,7 +343,3 @@ The hard part is the human's. The gates, the peer-state discipline, the unstated
 The pieces are early and the rough edges are real — the friction above isn't a footnote, it's the manual. But the direction is clear enough to act on: if you've got a feature spanning services and a backlog of coordination overhead to match, this is a pattern you can run today. The [**`claude-chat` plugin**](https://github.com/vikrantjain/claude-chat) is open source and free — a research-preview build on that experimental Channels API — early enough that each instance launches behind a flag literally named `--dangerously-load-development-channels` — with a README that walks the whole setup end to end.
 
 And you don't need three services to feel it. The lowest-effort try is two terminals: [clone the repo](https://github.com/vikrantjain/claude-chat), stand up one broker (`bunx claude-chat-broker`), launch two Claude Code instances pointed at it — each with that same development-channels flag — and watch them discover each other and talk. Once the channel clicks, the three-service version is just more of the same. It's built for real, multi-service work, not a demo — but you can prove the idea to yourself in a single sitting.
-
----
-
-> [**Provide comments on LinkedIn**](https://www.linkedin.com/in/vikrantj) (No extra login required!)
