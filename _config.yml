@@ -9,7 +9,6 @@ remote_theme: daattali/beautiful-jekyll@6.0.1
 
 # --- Navigation bar ---
 navbar-links:
-  Home: ""
   About: "about"
 
 title-on-all-pages: true
