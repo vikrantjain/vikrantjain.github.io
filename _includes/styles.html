@@ -49,13 +49,13 @@
   .post-heading {
     text-align: center;
   }
-  /* Header heading block: a centered column wide enough for short titles to
-     stay on one line, but capped so long titles wrap with side margins
-     instead of running edge-to-edge. Scoped to .intro-header so the article
-     body column is unaffected. */
+  /* Header heading block: centered and capped to the article content width
+     (~730px) so the title shares the same left/right edges as the subtitle and
+     body instead of overhanging them. Longer titles wrap to two lines, which is
+     fine. Scoped to .intro-header so the article body column is unaffected. */
   .intro-header .row > [class*="col-"] {
     flex: 0 0 100%;
-    max-width: 860px;
+    max-width: 730px;
     margin-left: auto;
     margin-right: auto;
   }
