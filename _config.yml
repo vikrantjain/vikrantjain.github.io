@@ -1,6 +1,7 @@
 # --- General ---
 title: Vikrant Jain
 author: Vikrant Jain
+url: "https://vikrantjain.github.io"
 description: >-
   Writing on software architecture, AI coding agents, and engineering practice.
 
@@ -54,7 +55,6 @@ defaults:
       head-extra: [mermaid.html, styles.html]
 
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed

@@ -1,8 +1,8 @@
 _site/
+.playwright-mcp/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 vendor/
 Gemfile.lock
-Gemfile
 _config_local.yml
