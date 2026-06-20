@@ -63,15 +63,15 @@
     font-weight: 800;
     letter-spacing: -0.03em;
     color: #1a1a1a;
-    /* Fluid: ~32px on phones, up to 56px on desktop (keeps the desktop
-       one-line ratio while scaling down on small screens like Hashnode). */
-    font-size: clamp(2rem, 7vw, 3.5rem);
+    /* Fluid: ~32px on phones, up to ~48px on desktop. Dialled down from the
+       original 3.5rem Hashnode match for better balance against the body. */
+    font-size: clamp(2rem, 6.5vw, 3rem);
     overflow-wrap: break-word;
   }
   .intro-header .post-heading .post-subheading {
     font-weight: 400;
     color: #6b6f76;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1.4;
     margin-top: 0.6rem;
     /* Title spans the full-width header; keep the subtitle within the
