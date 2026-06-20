@@ -15,12 +15,11 @@ Personal blog of Vikrant Jain, published with **Jekyll** on **GitHub Pages**.
 
 ## How customization works (don't break these)
 
-All site customization rides on Beautiful Jekyll hooks — there are **no** local theme-layout overrides:
+All site customization rides on Beautiful Jekyll hooks — there are **no** local theme-layout overrides. `_config.yml` injects `_includes/styles.html` and `_includes/mermaid.html` site-wide via `head-extra`; posts also get `_includes/toc.html` (head-extra) and `_includes/discuss-cta.html` (after-content). Each include documents itself — the non-obvious, not-in-code bits:
 
-- `_includes/styles.html` (Hashnode-style CSS: Inter font, reading sizing, centered titles, full-width thin `hr`, code/quote/tag styling) and `_includes/mermaid.html` are injected on every page via the `head-extra` default in `_config.yml`. Posts also get `_includes/discuss-cta.html` via the `after-content` default.
-- `_config.yml` sets `url: https://vikrantjain.github.io` explicitly so `jekyll-seo-tag`/`jekyll-feed`/`jekyll-sitemap` emit absolute URLs (og:image, RSS, sitemap) instead of relying on GitHub Pages auto-injection. `_config_local.yml` overrides it to `http://localhost:4000` for preview.
-- **Remote themes ship `_layouts`/`_includes`/`_sass` only — not root-level pages.** That's why `tags.html` is recreated locally (with an explicit `permalink: /tags/`); without it the theme's tag index isn't inherited and every post's `#tag` link 404s. Its chip/section styling lives in `styles.html`.
-- **Mermaid:** GitHub Pages does **not** render mermaid on its own (that's a github.com repo-view feature only). It works here only because `mermaid.html` loads mermaid.js site-wide. Don't remove the include, and don't replace diagrams with images.
+- `_config.yml` sets `url:` explicitly so `jekyll-seo-tag`/`jekyll-feed`/`jekyll-sitemap` emit absolute URLs (og:image, RSS, sitemap) instead of relying on GitHub Pages auto-injection. `_config_local.yml` overrides it to localhost for preview.
+- **Mermaid:** GitHub Pages doesn't render mermaid itself (that's a github.com repo-view feature). It works only because `mermaid.html` loads mermaid.js site-wide — don't remove it, and don't swap diagrams for images.
+- **Remote themes ship `_layouts`/`_includes`/`_sass` only — not root pages.** Hence `tags.html` is recreated locally (explicit `permalink: /tags/`); without it the theme's tag index isn't inherited and every post's `#tag` link 404s.
 
 ## Post frontmatter convention
 
@@ -39,16 +38,11 @@ discuss:                  # optional; renders a "Discuss this post" footer
 ---
 ```
 
-`share-img` sets the Open Graph / Twitter card image used when a post is shared.
-OG images live in `assets/images/` named `og-<slug>.<ext>`. All posts have one
-except `documentation-is-not-a-deliverable` (intentionally none).
-
-`discuss` is an optional map of platform → URL. Each entry is independent (omit
-any platform), and nothing renders if the whole block is absent — so you never
-hand-write a discussion link at the bottom of an article. Known keys
-(`linkedin`, `x`/`twitter`, `reddit`, `hackernews`/`hn`, `github`, `mastodon`)
-get friendly labels; any other key is title-cased. Rendered by
-`_includes/discuss-cta.html`, wired via the posts `after-content` default.
+`share-img` is the OG/social-card image, stored as `assets/images/og-<slug>.<ext>`
+(every post has one except `documentation-is-not-a-deliverable`). `discuss` is an
+optional frontmatter map that renders a footer via `_includes/discuss-cta.html`
+— see that file for supported platform keys and behavior. Never hand-write a
+discussion link in the body.
 
 Body conventions (kept generator-agnostic for portability):
 - Section headings use `###` (h3). The title lives in frontmatter. Do not use `#`/`##` in the body.
