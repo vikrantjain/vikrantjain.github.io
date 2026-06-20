@@ -148,6 +148,78 @@
     margin: 3rem auto;
   }
 
+  /* Post tags — Hashnode-style chips instead of the theme's plain text links.
+     Restrained (muted grey, small) so they read as secondary browse-by-topic
+     links without competing with the discuss CTA nearby. */
+  .blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .blog-tags > span {
+    color: #6b6f76;
+    font-weight: 600;
+    margin-right: 0.2rem;
+  }
+  .blog-tags a {
+    display: inline-block;
+    background: #f1f3f5;
+    color: #4a4a4a;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .blog-tags a:hover {
+    background: #e2e5e9;
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  /* /tags index page — the theme renders the tag buttons as loud blue Bootstrap
+     buttons; restyle them as the same grey chips used in post footers, and tidy
+     the per-tag section headings/entries to match the site's typography. */
+  .tag-btn.btn-primary {
+    display: inline-block;
+    background: #f1f3f5;
+    border: none;
+    color: #4a4a4a;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    margin: 0 0.4rem 0.5rem 0;
+    border-radius: 999px;
+    box-shadow: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .tag-btn.btn-primary:hover,
+  .tag-btn.btn-primary:focus,
+  .tag-btn.btn-primary:active {
+    background: #e2e5e9;
+    color: #1a1a1a;
+    box-shadow: none;
+  }
+  .linked-section {
+    margin-top: 2.2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .tag-entry { margin: 0.35rem 0; }
+  .tag-entry a {
+    color: #008AFF;
+    text-decoration: none;
+  }
+  .tag-entry a:hover { text-decoration: underline; }
+  .entry-date {
+    color: #828282;
+    font-size: 0.9rem;
+  }
+
   /* Home brand header ("The Architect's Ledger") — sized just above the
      post-list item title/subtitle rather than as a large banner. Scoped to the
      home page (the only page with a post list) so the About header is untouched. */
