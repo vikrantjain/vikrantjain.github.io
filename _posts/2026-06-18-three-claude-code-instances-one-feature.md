@@ -7,6 +7,8 @@ date: 2026-06-18
 permalink: /three-claude-code-instances-one-feature/
 share-img: "/assets/images/og-three-claude-code-instances-one-feature.png"
 tags: [claude-code, ai-agents, multi-agent, mcp, software-engineering]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_claudecode-claudeai-aiagents-activity-7475023591676256257-pjGc"
 ---
 
 
