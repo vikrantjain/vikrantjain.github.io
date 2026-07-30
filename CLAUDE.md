@@ -9,7 +9,7 @@ that aren't obvious from the files themselves.
 Personal blog of Vikrant Jain, published with **Jekyll** on **GitHub Pages**.
 
 - **Repo:** `vikrantjain/vikrantjain.github.io` (root user site)
-- **Live URL:** https://vikrantjain.github.io/
+- **Live URL:** https://vikrantjain.dev/ (custom domain via `CNAME`; the repo is still the `vikrantjain.github.io` user site)
 - **Theme:** Beautiful Jekyll via `remote_theme: daattali/beautiful-jekyll@6.0.1`. No local theme files; native GitHub Pages build (no Actions, no custom plugins beyond `jekyll-sitemap`/`jekyll-seo-tag`/`jekyll-feed`).
 - Articles were migrated from Hashnode (`vikrantjain.hashnode.dev`). Hashnode is no longer the source of truth — this repo is.
 
