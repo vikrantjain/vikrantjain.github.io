@@ -6,7 +6,7 @@ description: "A mental model of the agentic loop, permission pipeline, and subag
 date: 2026-03-23
 permalink: /inside-claude-code-agentic-loop/
 share-img: "/assets/images/og-inside-claude-code-agentic-loop.png"
-tags: [claude-code, ai-agents, software-architecture, developer-tools, claude.ai]
+tags: [claude-code, ai-agents, software-architecture, developer-tools, claudeai]
 ---
 
 
