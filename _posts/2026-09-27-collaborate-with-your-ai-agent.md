@@ -3,7 +3,7 @@ layout: post
 title: "Collaborate With Your AI Agent. Don't Command It."
 subtitle: "Giving orders has always capped a team at one person's thinking. With AI, that ceiling shows up in minutes instead of months."
 description: "Commanding a team caps results at one person's thinking. AI agents expose that ceiling in minutes. How to brief an agent as a peer, and a plugin that helps."
-date: 2026-09-27
+date: 2026-09-27 00:00:00 +0530
 permalink: /collaborate-with-your-ai-agent/
 share-img: "/assets/images/og-collaborate-with-your-ai-agent.png"
 tags: [ai-agents, claude-code, claudeai, engineering-management, software-engineering, futureofwork]
