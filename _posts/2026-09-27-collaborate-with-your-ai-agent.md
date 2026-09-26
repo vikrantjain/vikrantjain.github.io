@@ -30,13 +30,13 @@ In the second, the team works things out together. People raise problems, questi
 
 Collaboration doesn't guarantee a better result. **It removes the ceiling that command puts in place.**
 
-This isn't about being nice. It's about what the working style allows the team to know.
+The point is what the working style lets the team know.
 
 ---
 
 ### Software paid for this for years, and rarely noticed
 
-Software projects have failed for many reasons. The command style is one of the biggest, and one of the least visible. I've seen it while working with people across industries and at every level of seniority.
+Software projects have failed for many reasons. In my experience with people across industries and at every level of seniority, the command style is one of the biggest, and one of the least visible.
 
 The failure is slow. A requirement arrives already shaped as a solution: *"add a nightly cron job"*, *"use this framework"*, *"build a screen for X"*. The team builds exactly that. Weeks or months later, the result reaches real users and misses what they needed. By then the cause is hard to trace. The postmortem finds scope creep, unclear requirements, bad estimates or a tough domain. It rarely finds that one person decided the approach and nobody was invited to question it.
 
@@ -48,7 +48,7 @@ That delay hid the pattern. When a failure shows up months after its cause, peop
 
 A coding agent doesn't need weeks. It turns an order into finished work within minutes.
 
-That changes what we can see. If you brief an agent the way a commander briefs a team, the agent will usually do what it was told, however poor the plan. It won't sulk or slow down. It won't quietly do something else. It will build the Postgres schema, draft the survey or write the cron job, and fill every gap with its own guess. The ceiling that took months to show up in a human team now shows up before your coffee gets cold.
+That changes what we can see. If you brief an agent the way a commander briefs a team, the agent will usually do what it was told, however poor the plan. It won't sulk or slow down. It will build the Postgres schema or write the cron job, and fill every gap with its own guess. The ceiling that took months to show up in a human team now shows up before your coffee gets cold.
 
 Most people read that as the agent's limitation. I read it as a mirror. The agent is showing us, fast and cheaply, a habit we have always had.
 
@@ -83,22 +83,22 @@ flowchart LR
 
 ### What collaborating with an agent looks like
 
-Here is the same Postgres request again, same model. This time the agent was set up to respond to *how* the work was briefed. It wrote no schema. It opened like this:
+Here is the same Postgres request again, same model. This time I asked the agent to review *how* the work was briefed, using a skill I describe below. It wrote no schema. It opened like this:
 
 > You've given me the tool (Postgres) and the task (a schema), but not what the event data is or what it's for. So the brief leaves me no point where I could suggest a different approach, and nothing to check a schema against. [...] Tell me the problem and how the data will be used, and I can design for that. [...] Postgres may well be the right choice. If it's already settled, tell me why, because the reason affects how I set up the rest.
 
 Then it asked four questions: what the events are and where they come from, who reads the data and how, whether Postgres is a hard requirement, and how you'll know the schema is right.
 
-Nothing in that reply is clever. It's what a good senior colleague would say in a design discussion. It also opens the thing the first reply shut. The agent can now propose something better, or confirm your choice for a reason you both understand.
+Nothing in that reply is clever. It's what a good senior colleague would say in a design discussion. It also reopens the choice the first reply closed. The agent can now propose something better, or confirm your choice for a reason you both understand.
 
 Working with an agent as a peer comes down to a few shifts in how you open a task:
 
-- **State the problem, not only the solution.** "Members are leaving in their first year and nobody knows why" gives the agent something to think about. "Send a survey" gives it only something to do.
+- **State the problem, not only the solution.** "Fewer members come to our events, and we don't know why" gives the agent something to think about. "Send a survey" gives it only something to do.
 - **Separate real constraints from preferences.** A deadline, a regulation or a system that can't change is a constraint. Your favourite tool is a preference. When a preference is presented as a constraint, every option that conflicts with it quietly disappears.
 - **Say what success looks like.** "Make it faster" leaves the standard in your head. If nobody but you can tell whether the result is right, the agent can't either.
 - **Leave room for the agent to disagree.** Sometimes you've decided, and you want execution. That's fine. Say so, and say why. The problem is the accidental version, where you would have welcomed a better idea and never gave the agent a chance to offer one.
 
-There's a benefit beyond the result. When you discuss a problem with an agent, you learn from it. It knows approaches and trade-offs you haven't met, and it will explain them if you ask. It learns from you what matters in your situation, which no model can know in advance. Each side's mistakes get caught earlier. That exchange is what you give up when you only give orders.
+There's a benefit beyond the result. When you discuss a problem with an agent, you learn from it. It knows approaches and trade-offs you haven't met, and it will explain them if you ask. It hears from you what matters in your situation, which no model can know in advance. Each side's mistakes get caught earlier. That exchange is what you give up when you only give orders.
 
 ---
 
@@ -110,7 +110,9 @@ A request that dictates a solution and a request that states a considered decisi
 
 So I built a small Claude Code plugin to point it out. It's called [**`intent`**](https://github.com/vikrantjain/intent), and it has two skills.
 
-**`/intent:briefing-review`** reviews how you briefed the agent, not what you asked for. It doesn't judge your plan. It checks whether you stated a problem or only an approach, and whether your constraints are real or preferences. It checks whether success is defined, and whether you left the agent any room to propose something different. Then it tells you plainly and politely what a different brief would get you, and asks what it needs to reach your actual goal. The Postgres reply above came from this skill. If you tell it you've already thought it through, it takes you at your word and moves on.
+**`/intent:briefing-review`** reviews how you briefed the agent, not what you asked for. It doesn't judge your plan. It checks whether you stated a problem or only an approach, and whether your constraints are real or preferences. It also checks whether success is defined, and whether you left the agent any room to propose something different.
+
+Then it tells you plainly and politely what a different brief would get you, and asks what it needs to reach your actual goal. The Postgres reply above came from this skill. It runs only when you ask for it, and you're the person least likely to notice when you need it. So treat it as a routine for a while: run it on the first message of each task until the habit forms. If you tell it you've already thought it through, it takes you at your word and moves on.
 
 **`/intent:capture`** writes down what you and the agent agreed. It produces a short `intent.md` with the same six sections every time: the problem, why it matters, what success means, real constraints, what's out of scope and what's still open. It captures *what* and *why*, never *how*. It's about 400 words, readable in two minutes. Later work can be checked against it. If you later try to change the problem or the success criteria, it tells you what that change affects and waits for you to agree.
 
@@ -155,6 +157,8 @@ Notice what's missing. There's no reminder app, no text-message system and no ne
 Neither skill assumes software. One of the plugin's test cases is a request to *"send a survey to all our members asking them to rate our events from 1 to 5, and have it out by next week."* The review points out that the request says what to build but not what you want to find out. It notes that a single number shows *that* people are unhappy but not *why*. Then it asks what prompted the survey, what you'll decide from the results and where "next week" comes from. The same habit shows up in a food bank, a hiring decision or a research project, and the same questions help.
 
 The plugin doesn't change how you work. It shows you which style your request is in, and what the other style would get you. The change is still yours to make.
+
+The plugin is an early experiment. I expect it to improve with use and feedback. Issues and suggestions on the repo are welcome.
 
 ---
 
