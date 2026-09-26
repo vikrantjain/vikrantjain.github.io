@@ -3,7 +3,7 @@ layout: post
 title: "Collaborate With Your AI Agent. Don't Command It."
 subtitle: "Giving orders has always capped a team at one person's thinking. With AI, that ceiling shows up in minutes instead of months."
 description: "Commanding a team caps results at one person's thinking. AI agents expose that ceiling in minutes. How to brief an agent as a peer, and a plugin that helps."
-date: 2026-09-29
+date: 2026-09-27
 permalink: /collaborate-with-your-ai-agent/
 share-img: "/assets/images/og-collaborate-with-your-ai-agent.png"
 tags: [ai-agents, claude-code, claudeai, engineering-management, software-engineering, futureofwork]
@@ -166,4 +166,4 @@ If you meant to, fine. Add one sentence saying why. If you didn't, add the probl
 
 I expect this to matter more with each new model. The more capable the agent, the more a command-style brief wastes it. You end up with a strong colleague doing a weak plan very well.
 
-> The attitude problem is one of several I see in how people work with AI. Two others deserve their own articles: treating the agent as an oracle that should know what it was never told, and believing that only specially trained people can use AI well. More on those soon.
+> The command habit is one of several I see in how people work with AI. Two others deserve their own articles: treating the agent as an oracle that should know what it was never told, and believing that only specially trained people can use AI well. More on those soon.
