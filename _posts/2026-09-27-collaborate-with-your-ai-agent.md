@@ -57,22 +57,55 @@ The good news points the same way. If the command style's ceiling shows up this 
 The two styles run through different loops. The diagram shows where each one finds out it went wrong.
 
 ```mermaid
-flowchart LR
-  subgraph Command["Command"]
-    direction TB
-    A1["Decide the approach alone"] --> A2["Hand over the order"]
-    A2 --> A3["Agent builds exactly that"]
-    A3 --> A4["Result misses the real need"]
+---
+config:
+  theme: base
+  htmlLabels: false
+  themeVariables:
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif"
+    fontSize: "15px"
+    primaryColor: "#f1f3f5"
+    primaryBorderColor: "#c9cdd2"
+    primaryTextColor: "#242424"
+    lineColor: "#8a8f98"
+    clusterBkg: "#ffffff"
+    clusterBorder: "#e0e0e0"
+    titleColor: "#1a1a1a"
+    edgeLabelBackground: "#ffffff"
+  flowchart:
+    curve: basis
+    nodeSpacing: 30
+    rankSpacing: 40
+---
+flowchart TB
+  subgraph Command["COMMAND: checked only at the end"]
+    direction LR
+    A1["Decide the<br/>approach alone"] --> A2["Hand over<br/>the order"]
+    A2 -- "nothing agreed" --> A3["Agent builds<br/>exactly that"]
+    A3 --> A4["`**Result misses**
+**the real need**`"]
   end
-  subgraph Collaborate["Collaborate"]
-    direction TB
-    B1["State the problem"] --> B2["Discuss and push back"]
-    B2 --> B3["Agree on problem and success"]
-    B3 --> B4["Agent builds it"]
-    B4 --> B5["Check the result against the agreement"]
+  subgraph Collaborate["COLLABORATE: agreed first, checked against it"]
+    direction LR
+    B1["State the<br/>problem"] --> B2["Discuss and<br/>push back"]
+    B2 --> B3["`**Agree on problem**
+**and success**`"]
+    B3 --> B4["Agent<br/>builds it"]
+    B4 --> B5["`**Check result against**
+**the agreement**`"]
     B5 -. "gap found" .-> B2
   end
   Command ~~~ Collaborate
+  classDef default fill:#f1f3f5,stroke:#c9cdd2,color:#242424
+  style Command fill:#ffffff,stroke:#e0e0e0,color:#1a1a1a
+  style Collaborate fill:#ffffff,stroke:#e0e0e0,color:#1a1a1a
+  classDef fail fill:#fdecec,stroke:#e5484d,color:#9b1c1c,stroke-width:2px
+  classDef agree fill:#e7f3ff,stroke:#008AFF,color:#0b4f8a,stroke-width:2px
+  classDef check fill:#e6f4ea,stroke:#2f9e44,color:#1b5e20,stroke-width:2px
+  class A4 fail
+  class B3 agree
+  class B5 check
+  linkStyle 3,4,5,6,7 stroke:#008AFF,stroke-width:1.6px
 ```
 
 **Command** runs in a straight line. The only check is the finished result, so a wrong approach is found at the end, when it costs the most. With a human team, that end could be months away. With an agent, it's minutes away, but it's still the end.
