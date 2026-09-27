@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Collaborate With Your AI Agent. Don't Command It."
-subtitle: "Giving orders has always capped a team at one person's thinking. With AI, that ceiling shows up in minutes instead of months."
-description: "Commanding a team caps results at one person's thinking. AI agents expose that ceiling in minutes. How to brief an agent as a peer, and a plugin that helps."
+subtitle: "Giving orders has always capped a team at one person's thinking. An AI agent doesn't lift that cap. It carries out the order faster."
+description: "Giving orders caps a team at one person's thinking. AI agents carry out orders faster, wrong ones included. Real cases, and what a peer's brief looks like."
 date: 2026-09-27 00:00:00 +0530
 permalink: /collaborate-with-your-ai-agent/
 share-img: "/assets/images/og-collaborate-with-your-ai-agent.png"
@@ -10,49 +10,53 @@ tags: [ai-agents, claude-code, claudeai, engineering-management, software-engine
 ---
 
 
-Type this into a coding agent: *"Use Postgres for our event data and set up the schema."*
+Here are three requests I've seen at work.
 
-A minute later you have a migration file. The events table is split by month. There are indexes for lookups by type, by actor and by time. There is a JSON column for fields that vary between event types. At the bottom sits a section called **"Assumptions I made"**. The first assumption reads: *"General app or product events, one row each, never updated."*
+A product manager at a finance company gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company, over A2A, a protocol for agents to talk to each other. That way they would get answers to all kinds of problems quickly. The reasons given were speed to market, and that competitors were building AI agents.
 
-That section is the whole story. Each assumption is a decision about your system that you never knew you had handed over. The agent didn't know what the events were. It didn't know who would read them, or how. It didn't know whether Postgres was a hard requirement or just the first thing you thought of. You gave it an order, so it filled the gaps itself and delivered.
+An architect asked an AI agent to write an architecture doc. All of the organisation's docs would move into a vector store, a database built for AI search. MCP servers would sit on top of it. MCP is a standard way for AI agents to call tools. Customers' AI agents would use those tools to get answers from the docs.
 
-When the result turns out wrong, the usual verdict is that the agent isn't capable enough, or that the problem was too hard. I think the cause sits one step earlier, in how we work with the agent.
+A developer asked an AI agent to build a todos app in Java. The todos would be stored in DynamoDB, Amazon's database, *"for fast and scalable retrieval"*. Notifications would go through SNS, Amazon's messaging service.
+
+Three roles, one shape. Each request names a solution. None of them says what problem the solution solves, or for whom. **Each one is an order.**
+
+---
+
+### What happened next
+
+The finance company's teams spent a lot of time and money building whatever agents they could, and learning A2A. Most of it produced no real outcome. Where there was one, nobody could see it, because nobody could say which business problem it solved. So nobody was waiting for it. Nobody called it a failure either. Slowly, the project was accepted as a long-term goal, one the company would reach one day.
+
+The architect's agent produced the design in a day. The trouble started when the team built it with real data. That took a long time. Every update to the docs needed extra work to keep the vector store in step, and the team wrote utility scripts to manage it. The service did ship. It was offered to customers free, because the product docs were already free for anyone to read. Its total cost, maintenance included, was high for what it gave back.
+
+I ran the todos request again myself, and I'll come back to it.
+
+Neither story is about bad people. The teams worked hard, and the agent was quick. Everyone did what they were asked. The problem sits one step earlier, in how the work was handed over.
 
 ---
 
 ### One mind, or many
 
-Think about two ways a team can work.
+When one person decides the approach and everyone else executes, the result can't be better than that person's thinking. Ten people carrying out one plan are still limited by the plan. Nobody else's knowledge gets a chance to change it.
 
-In the first, one person decides. They pick the approach, break it into instructions and hand those out. Everyone else executes. However large that team is, its result can't be better than the thinking of the person giving the orders. Ten people carrying out one person's plan are still limited by that one plan.
-
-In the second, the team works things out together. People raise problems, question each other, give feedback and reach decisions they all accept. The result is no longer limited by any one member. It can reach what the whole team knows, and sometimes more, because one person's idea sets off a better one in someone else.
+When a team works the problem out together, people raise issues, question each other and reach decisions they all accept. The result can draw on everything the team knows. Sometimes it goes further, because one person's idea sets off a better one in someone else.
 
 Collaboration doesn't guarantee a better result. **It removes the ceiling that command puts in place.**
 
-The point is what the working style lets the team know.
+The ceiling is hard to see because the failure is slow. The finance project never had a day when it visibly failed. It drifted, and the drift got a new name. When the cost of a decision shows up months later, people blame whatever is nearest: the technology, the estimates, a tough domain. The order that started it rarely gets questioned. By then it no longer looks like a choice.
 
 ---
 
-### Software paid for this for years, and rarely noticed
+### A faster agent doesn't fix it
 
-Software projects have failed for many reasons. In my experience with people across industries and at every level of seniority, the command style is one of the biggest, and one of the least visible.
+It's tempting to think AI changes this. An agent turns an order into finished work in minutes, so a wrong order should show itself sooner.
 
-The failure is slow. A requirement arrives already shaped as a solution: *"add a nightly cron job"*, *"use this framework"*, *"build a screen for X"*. The team builds exactly that. Weeks or months later, the result reaches real users and misses what they needed. By then the cause is hard to trace. The postmortem finds scope creep, unclear requirements, bad estimates or a tough domain. It rarely finds that one person decided the approach and nobody was invited to question it.
+I gave the todos request, word for word, to Claude Opus. In under three minutes it had written ten files: the Java code, the build setup, a local test environment and a README. It asked no questions. It never asked what the app was for, who would use it, or whether DynamoDB and SNS were the right fit. It filled those gaps itself. It decided the app had many users, and organised every todo by user. It added no login. Its closing summary pointed out that anyone who could reach the app could read or change anyone's todos. It also warned that notifications could be lost without anyone knowing.
 
-That delay hid the pattern. When a failure shows up months after its cause, people blame whatever is nearest in time.
+That summary is the useful part. Within minutes, the agent showed every decision it had made on the developer's behalf. It only helps if someone reads those decisions against a stated problem. Without one, there's nothing to check them against, and the build looks finished.
 
----
+The architect's story shows what happens next. The design took a day. Nothing in it was checked against a problem, because nobody had stated one. The cost arrived where it always had: in the building and maintenance that followed.
 
-### AI removes the delay
-
-An AI agent doesn't need weeks. It turns an order into finished work within minutes.
-
-That changes what we can see. If you brief an agent the way a commander briefs a team, the agent will usually do what it was told, however poor the plan. It won't sulk or slow down. It will build the Postgres schema or write the cron job, and fill every gap with its own guess. The ceiling that took months to show up in a human team now shows up before your coffee gets cold.
-
-Most people read that as the agent's limitation. I read it as a mirror. The agent is showing us, fast and cheaply, a habit we have always had.
-
-The good news points the same way. If the command style's ceiling shows up this quickly, so does the payoff of collaborating.
+**A fast agent removes the delay between an order and a finished result. It doesn't remove the delay between an order and its consequences.** More gets built before anyone asks why.
 
 The two styles run through different loops. The diagram shows where each one finds out it went wrong.
 
@@ -108,99 +112,55 @@ flowchart TB
   linkStyle 3,4,5,6,7 stroke:#008AFF,stroke-width:1.6px
 ```
 
-**Command** runs in a straight line. The only check is the finished result, so a wrong approach is found at the end, when it costs the most. With a human team, that end could be months away. With an agent, it's minutes away, but it's still the end.
+**Command** runs in a straight line. The only check is the finished result, so a wrong approach is found at the end, when it costs the most. An agent gets you to that end sooner, but it's still the end.
 
 **Collaborate** puts the thinking before the building. The problem and the meaning of success are agreed first, by both sides. The result is then checked against that agreement, not against whatever the person giving the orders had in mind. When the check finds a gap, the loop goes back to discussion, not to a fresh order.
 
 ---
 
-### What collaborating with an agent looks like
+### What a peer does instead
 
-Here is the same Postgres request again, same model. This time I asked the agent to review *how* the work was briefed, using a skill I describe below. It wrote no schema. It opened like this:
+The alternative isn't a longer order. It's giving whoever does the work room to question the order before it starts.
 
-> You've given me the tool (Postgres) and the task (a schema), but not what the event data is or what it's for. So the brief leaves me no point where I could suggest a different approach, and nothing to check a schema against. [...] Tell me the problem and how the data will be used, and I can design for that. [...] Postgres may well be the right choice. If it's already settled, tell me why, because the reason affects how I set up the rest.
+Take the finance requirement. If the product manager had brought it to the team as a problem to discuss, the real need had a good chance of surfacing. Maybe the real goal was simply to start building AI agents. Even then, a discussion could have agreed what outcome to expect from them, and people would have known what they were waiting for. Simpler options than agents talking over A2A might have come up too. In a field changing this fast, one protocol shouldn't be a fixed requirement. It's a preference presented as a constraint.
 
-Then it asked four questions: what the events are and where they come from, who reads the data and how, whether Postgres is a hard requirement, and how you'll know the schema is right.
+An agent can open that discussion too. I gave the same requirement to an agent and asked it to review the brief. It said the brief handed over the answer but not the problem it was meant to solve. Its first questions were what is slow today, and who feels that delay.
 
-Nothing in that reply is clever. It's what a good senior colleague would say in a design discussion. It also reopens the choice the first reply closed. The agent can now propose something better, or confirm your choice for a reason you both understand.
+I did the same with the architect's request, which had gone to an agent the first time. This time I asked the agent to review how the work was briefed before doing anything. It wrote no design. It opened like this:
 
-Working with an agent as a peer comes down to a few shifts in how you open a task:
+> You've given me the whole architecture already: a vector store, MCP servers on top of it, and MCP tools for customers. The only goal is "their AI agents can get answers from our docs easily." So the doc I'd write would describe a design that's already been chosen. It wouldn't test that design.
 
-- **State the problem, not only the solution.** "Fewer members come to our events, and we don't know why" gives the agent something to think about. "Send a survey" gives it only something to do.
-- **Separate real constraints from preferences.** A deadline, a regulation or a system that can't change is a constraint. Your favourite tool is a preference. When a preference is presented as a constraint, every option that conflicts with it quietly disappears.
-- **Say what success looks like.** "Make it faster" leaves the standard in your head. If nobody but you can tell whether the result is right, the agent can't either.
-- **Leave room for the agent to disagree.** Sometimes you've decided, and you want execution. That's fine. Say so, and say why. The problem is the accidental version, where you would have welcomed a better idea and never gave the agent a chance to offer one.
+Its first question was what was going wrong today. Were customers' agents giving wrong answers about the product? Were customers asking for this? Was it a support cost, or a competitive move? It also asked whether MCP was a requirement or a first idea. If it was a first idea, the agent wanted room to compare it with simpler options, such as a public docs API.
 
-There's a benefit beyond the result. When you discuss a problem with an agent, you learn from it. It knows approaches and trade-offs you haven't met, and it will explain them if you ask. It hears from you what matters in your situation, which no model can know in advance. Each side's mistakes get caught earlier. That exchange is what you give up when you only give orders.
+I can't know whether those questions would have changed the design. The agent didn't know the docs were already free to read. But nobody asked those questions at the time, and each one points at something the project later paid for.
 
----
+A peer is also useful when you have thought it through. In one of my test scenarios, a members' association wants a survey: every member rates each of its six events from 1 to 5. The events committee's minutes explain why. The venue budget has been halved, and the committee must pick three events to keep. The minutes also note that attendance alone won't settle it, because some events draw the same small group every year.
 
-### The hard part: seeing your own style
+Asked to review the survey brief, the agent found the minutes and credited that reasoning. Then it pointed out a gap. A rating from 1 to 5 measures enthusiasm, and regulars will rate their own events highly. That's roughly the same signal as attendance, which the minutes had said wasn't enough. It suggested one extra question: which events has each member attended, or would attend? The answers show how many different members each event reaches, which is what the committee cared about. It kept the 1-to-5 scale, so the results could still be compared with the last survey.
 
-All of this sounds obvious written down. It's much harder to spot in the moment.
-
-A request that dictates a solution and a request that states a considered decision look the same on the page. "Use Postgres" might be a first idea. It might also be a choice you made last month for good reasons. You're usually the last person to notice which one it is, because the reasoning feels complete from the inside.
-
-So I built a small Claude Code plugin to point it out. It's called [**`intent`**](https://github.com/vikrantjain/intent), and it has two skills. Neither assumes the work is code.
-
-**`/intent:briefing-review`** reviews how you briefed the agent, not what you asked for. It doesn't judge your plan. It checks whether you stated a problem or only an approach, and whether your constraints are real or preferences. It also checks whether success is defined, and whether you left the agent any room to propose something different.
-
-Then it tells you plainly and politely what a different brief would get you, and asks what it needs to reach your actual goal. The Postgres reply above came from this skill. It runs only when you ask for it, and you're the person least likely to notice when you need it. So treat it as a routine for a while: run it on the first message of each task until the habit forms. If you tell it you've already thought it through, it takes you at your word and moves on.
-
-**`/intent:capture`** writes down what you and the agent agreed. It produces a short `intent.md` with the same six sections every time: the problem, why it matters, what success means, real constraints, what's out of scope and what's still open. It captures *what* and *why*, never *how*. It's about 400 words, readable in two minutes. Later work can be checked against it. If you later try to change the problem or the success criteria, it tells you what that change affects and waits for you to agree.
-
-Here is one it wrote during the plugin's tests. The request described a food bank whose Saturday volunteer shifts keep ending up short-staffed. It gave the cost, a target and a budget limit, and said recruiting was a separate effort. `capture` turned that into this:
-
-```markdown
-# Intent: Reliable Saturday shift staffing
-
-## Problem
-About a third of Saturday shifts at the food bank end up short-staffed. Volunteers sign up through
-a shared spreadsheet, then forget or drop out without telling anyone. Nobody finds out about the
-gaps until late, and the volunteer coordinator spends Friday evenings phoning around to fill them.
-
-## Why it matters
-Saturday is the busiest day. When a shift is short, the food bank serves fewer families. The
-Friday calls also fall on one person, and the coordinator is close to quitting. If nothing
-changes, the food bank risks losing the coordinator as well as the Saturday capacity.
-
-## Success
-- Saturday shifts are fully staffed at least 90% of the time, up from roughly 67% today.
-- The coordinator spends under 30 minutes on Friday calls to fill gaps.
-
-## Constraints
-- No budget for paid software this year.
-
-## Out of scope
-- Recruiting new volunteers. That is a separate effort. This work is about getting the people
-  who already signed up to turn up, or finding out early enough when they won't.
-
-## Open questions
-- What counts as "fully staffed": a set headcount per shift, or specific roles filled? (Coordinator)
-- Over what period, and from what record, is the 90% measured? Today's one-third figure is an
-  estimate, so a baseline may need to be recorded first. (Coordinator)
-- Does the shared spreadsheet have to stay as the sign-up method, or could it change?
-  (Coordinator / food bank leadership)
-- Weekday shifts aren't mentioned. Do they have the same problem, and should they be covered?
-  (Coordinator)
-```
-
-Notice what's missing. There's no reminder app, no text-message system and no new sign-up tool. Those are solutions, and choosing one is the next conversation. Notice also the open questions. The agent didn't guess what "fully staffed" means or where the 90% comes from. It wrote those down as things to settle, each with the person who can settle it.
-
-Another of the plugin's test cases is a request to *"send a survey to all our members asking them to rate our events from 1 to 5, and have it out by next week."* The review points out that the request says what to build but not what you want to find out. It notes that a single number shows *that* people are unhappy but not *why*. Then it asks what prompted the survey, what you'll decide from the results and where "next week" comes from. The same habit shows up in a food bank, a hiring decision or a research project, and the same questions help.
-
-The plugin doesn't change how you work. It shows you which style your request is in, and what the other style would get you. The change is still yours to make.
-
-The plugin is an early experiment. I expect it to improve with use and feedback. Issues and suggestions on the repo are welcome.
+The committee's plan wasn't wrong. It had a ceiling, and a second mind lifted it.
 
 ---
 
 ### Before your next task
 
-Next time you open a session with an agent, read your first message back before you send it. Ask yourself whether it describes a problem or gives an order. If it gives an order, ask whether you meant to.
+Working with an agent as a peer comes down to how you open a task:
 
-If you meant to, fine. Add one sentence saying why. If you didn't, add the problem, what success looks like and an invitation to push back. Then compare what comes back.
+- **State the problem, not only the solution.** "Fewer members come to our events, and we don't know why" gives the agent something to think about. "Send a survey" gives it only something to do.
+- **Separate real constraints from preferences.** A deadline, a regulation or a system that can't change is a constraint. Your favourite tool is a preference. A preference presented as a constraint quietly removes every option that conflicts with it.
+- **Say what success looks like.** If nobody but you can tell whether the result is right, the agent can't either.
+- **Leave room to disagree.** Sometimes you've decided, and you want execution. That's fine. Say so, and say why. The costly version is the accidental one, where you'd have welcomed a better idea and never gave the agent a chance to offer it.
 
-I expect this to matter more with each new model. The more capable the agent, the more a command-style brief wastes it. You end up with a strong colleague doing a weak plan very well.
+Next time you open a session with an agent, read your first message back before you send it. Ask whether it describes a problem or gives an order. If it gives an order, ask whether you meant to.
+
+I expect this to matter more with each new model. The more capable the agent, the more a command-style brief wastes it. You end up with a strong colleague carrying out a weak plan very well, and very fast.
+
+---
+
+### The tool I use to catch myself
+
+Seeing your own style is the hard part. A first idea and a considered decision look the same on the page, and the reasoning always feels complete from the inside. So I built [**`intent`**](https://github.com/vikrantjain/intent), a small Claude Code plugin. Its review skill produced both reviews above. It reads how you briefed the agent, not what you asked for, and it runs only when you ask. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
+
+The plugin is an early experiment, and I expect it to improve with use. Issues and suggestions on the repo are welcome.
 
 > The command habit is one of several I see in how people work with AI. Two others deserve their own articles: treating the agent as an oracle that should know what it was never told, and believing that only specially trained people can use AI well. More on those soon.
