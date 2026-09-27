@@ -12,7 +12,7 @@ tags: [ai-agents, claude-code, claudeai, engineering-management, software-engine
 
 Here are three requests I've seen at work.
 
-A product manager at a finance company gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company, over A2A, a protocol for agents to talk to each other. That way they would get answers to all kinds of problems quickly. The reasons given were speed to market, and that competitors were building AI agents.
+A product manager gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company, over A2A, a protocol for agents to talk to each other. That way they would get answers to all kinds of problems quickly. The reasons given were speed to market, and that competitors were building AI agents.
 
 An architect asked an AI agent to write an architecture doc. All of the organisation's docs would move into a vector store, a database built for AI search. MCP servers would sit on top of it. MCP is a standard way for AI agents to call tools. Customers' AI agents would use those tools to get answers from the docs.
 
@@ -24,9 +24,9 @@ Three roles, one shape. Each request names a solution. None of them says what pr
 
 ### What happened next
 
-The finance company's teams spent a lot of time and money building whatever agents they could, and learning A2A. Most of it produced no real outcome. Where there was one, nobody could see it, because nobody could say which business problem it solved. So nobody was waiting for it. Nobody called it a failure either. Slowly, the project was accepted as a long-term goal, one the company would reach one day.
+The dev teams spent a lot of time and money building whatever agents they could, and learning A2A. Most of it produced no real outcome. Where there was one, nobody could see it, because nobody could say which business problem it solved. So nobody was waiting for it. Nobody called it a failure either. Slowly, the project was accepted as a long-term goal, one the company would reach one day.
 
-The architect's agent produced the design in a day. The trouble started when the team built it with real data. That took a long time. Every update to the docs needed extra work to keep the vector store in step, and the team wrote utility scripts to manage it. The service did ship. It was offered to customers free, because the product docs were already free for anyone to read. Its total cost, maintenance included, was high for what it gave back.
+The architect's agent produced the design in a day. The trouble started when the team built it with real data. That took a long time. Every update to the docs needed extra work to keep the vector store in step, and the team wrote utility scripts to manage it. The service did ship. It was offered to customers free, because the product docs were already free for anyone to read. Its total cost, maintenance included, was high for a service offered free.
 
 I ran the todos request again myself, and I'll come back to it.
 
@@ -42,7 +42,7 @@ When a team works the problem out together, people raise issues, question each o
 
 Collaboration doesn't guarantee a better result. **It removes the ceiling that command puts in place.**
 
-The ceiling is hard to see because the failure is slow. The finance project never had a day when it visibly failed. It drifted, and the drift got a new name. When the cost of a decision shows up months later, people blame whatever is nearest: the technology, the estimates, a tough domain. The order that started it rarely gets questioned. By then it no longer looks like a choice.
+The ceiling is hard to see because the failure is slow. The product manager's project never had a day when it visibly failed. It drifted, and the drift got a new name. When the cost of a decision shows up months later, people blame whatever is nearest: the technology, the estimates, a tough domain. The order that started it rarely gets questioned. By then it no longer looks like a choice.
 
 ---
 
@@ -122,7 +122,7 @@ flowchart TB
 
 The alternative isn't a longer order. It's giving whoever does the work room to question the order before it starts.
 
-Take the finance requirement. If the product manager had brought it to the team as a problem to discuss, the real need had a good chance of surfacing. Maybe the real goal was simply to start building AI agents. Even then, a discussion could have agreed what outcome to expect from them, and people would have known what they were waiting for. Simpler options than agents talking over A2A might have come up too. In a field changing this fast, one protocol shouldn't be a fixed requirement. It's a preference presented as a constraint.
+Take the product manager's requirement. If they had brought it to the team as a problem to discuss, the real need had a good chance of surfacing. Maybe the real goal was simply to start building AI agents. Even then, a discussion could have agreed what outcome to expect from them, and people would have known what they were waiting for. Simpler options than agents talking over A2A might have come up too. In a field changing this fast, one protocol shouldn't be a fixed requirement. It's a preference presented as a constraint.
 
 An agent can open that discussion too. I gave the same requirement to an agent and asked it to review the brief. It said the brief handed over the answer but not the problem it was meant to solve. Its first questions were what is slow today, and who feels that delay.
 
