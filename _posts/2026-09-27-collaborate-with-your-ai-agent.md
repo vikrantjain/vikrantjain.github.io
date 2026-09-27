@@ -12,13 +12,15 @@ tags: [ai-agents, claude-code, claudeai, engineering-management, software-engine
 
 Here are three requests. See if anything about them looks wrong.
 
-A product manager I worked with gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company. They would use A2A, a protocol built for that. That way, the agents would get answers to all kinds of problems quickly. Two reasons were given: speed to market, and competitors building AI agents.
+**A product manager** I worked with gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company. They would use A2A, a protocol built for that. That way, the agents would get answers to all kinds of problems quickly. Two reasons were given: speed to market, and competitors building AI agents.
 
-An architect I worked with asked an AI agent to write an architecture doc. All of the organization's docs would move into a vector store, a database built for AI search. MCP servers would sit on top of it. MCP is a standard way for AI agents to call tools. Customers' AI agents would use those tools to get answers from the docs.
+**An architect** I worked with asked an AI agent to write an architecture doc. All of the organization's docs would move into a vector store, a database built for AI search. MCP servers would sit on top of it. MCP is a standard way for AI agents to call tools. Customers' AI agents would use those tools to get answers from the docs.
 
-The third is a test brief I wrote, based on similar requests I've seen. In it, a developer asks an AI agent to build a todos app in Java. The todos would be stored in DynamoDB, one of Amazon's cloud databases, "for fast and scalable retrieval". Notifications would go through SNS, Amazon's messaging service.
+**A developer** asks an AI agent to build a todos app in Java. The todos would be stored in DynamoDB, one of Amazon's cloud databases, "for fast and scalable retrieval". Notifications would go through SNS, Amazon's messaging service. This one is a test brief I wrote, based on similar requests I've seen.
 
-Most people would see nothing wrong here. Look again. Each request names a solution. None of them says what problem the solution solves, or for whom. The product manager gave reasons, but they were pressures, not a problem. **Each one is an order.**
+Most people would see nothing wrong here. Look again. Each request names a solution. None of them says what problem the solution solves, or for whom. The product manager gave reasons, but they were pressures, not a problem.
+
+**Each one is an order.**
 
 ---
 
@@ -40,7 +42,9 @@ When a team works the problem out together, people raise issues, question each o
 
 Collaboration doesn't guarantee a better result. **It removes the ceiling that command puts in place.**
 
-The ceiling is hard to see because the failure is slow. The product manager's project never had a day when it visibly failed. It drifted — and the drift got a new name. When the cost of a decision shows up months later, people blame whatever is nearest: the technology, the estimates, a tough domain. The order that started it rarely gets questioned. By then it no longer looks like a choice.
+The ceiling is hard to see because the failure is slow. The product manager's project never had a day when it visibly failed. It drifted — and the drift got a new name.
+
+When the cost of a decision shows up months later, people blame whatever is nearest: the technology, the estimates, a tough domain. The order that started it rarely gets questioned. By then it no longer looks like a choice.
 
 ---
 
@@ -48,7 +52,9 @@ The ceiling is hard to see because the failure is slow. The product manager's pr
 
 It's tempting to think AI changes this. An agent turns an order into finished work in minutes, so a wrong order should show itself sooner.
 
-I gave the todos request, word for word, to Claude Opus. In under three minutes it had written ten files: the Java code, the build setup, a local test environment and a README. It asked no questions. It never asked what the app was for, who would use it, or whether DynamoDB and SNS were the right fit. It filled those gaps itself. It decided the app had many users, and organized every todo by user. It added no login.
+I gave the todos request, word for word, to Claude Opus. In under three minutes it had written ten files: the Java code, the build setup, a local test environment and a README.
+
+It asked no questions. It never asked what the app was for, who would use it, or whether DynamoDB and SNS were the right fit. It filled those gaps itself. It decided the app had many users, and organized every todo by user. It added no login.
 
 Its closing summary pointed out that anyone who could reach the app could read or change anyone's todos. It also warned that a failed notification would be lost, while the app still reported success.
 
@@ -62,7 +68,7 @@ The architect's story shows what happens next. The design took a day. Nothing in
 
 ### What a peer does instead
 
-The alternative isn't a longer order. It's giving whoever does the work room to question the order first.
+The alternative isn't a longer order. **It's giving whoever does the work room to question the order first.**
 
 Take the product manager's requirement. Brought to the team as a problem to discuss, the real need had room to surface. Even if that need was simply to start building AI agents, a discussion could have agreed what outcome to expect — and people would have known what they were waiting for. Simpler options than A2A would have had a hearing. In a field changing this fast, one protocol shouldn't be a fixed requirement. A2A was a preference presented as a constraint.
 
@@ -107,8 +113,10 @@ I expect this to matter more with each new model. The more capable the agent, th
 
 ### The tool I use to catch myself
 
-Seeing your own style is the hard part. A first idea and a considered decision look the same on the page. The reasoning always feels complete from the inside. So I built [**`intent`**](https://github.com/vikrantjain/intent), a small plugin for Claude Code, Anthropic's coding agent. Its review skill produced all three reviews above. It reviews how you briefed the agent before any work starts. It runs only when you ask. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
+Seeing your own style is the hard part. A first idea and a considered decision look the same on the page. The reasoning always feels complete from the inside.
+
+So I built [**`intent`**](https://github.com/vikrantjain/intent), a small plugin for Claude Code, Anthropic's coding agent. Its review skill produced all three reviews above. It reviews how you briefed the agent before any work starts. It runs only when you ask. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
 
 The plugin is an early experiment, and I expect it to improve with use. Issues and suggestions on the repo are welcome.
 
-> The command habit is one of several I see in how people work with AI. Two others deserve their own articles: treating the agent as an oracle that should know what it was never told, and believing that only specially trained people can use AI well. More on those soon.
+*The command habit is one of several I see in how people work with AI. Two others deserve their own articles: treating the agent as an oracle that should know what it was never told, and believing that only specially trained people can use AI well. More on those soon.*
