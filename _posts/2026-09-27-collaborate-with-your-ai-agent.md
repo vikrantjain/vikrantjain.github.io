@@ -46,7 +46,7 @@ That delay hid the pattern. When a failure shows up months after its cause, peop
 
 ### AI removes the delay
 
-A coding agent doesn't need weeks. It turns an order into finished work within minutes.
+An AI agent doesn't need weeks. It turns an order into finished work within minutes.
 
 That changes what we can see. If you brief an agent the way a commander briefs a team, the agent will usually do what it was told, however poor the plan. It won't sulk or slow down. It will build the Postgres schema or write the cron job, and fill every gap with its own guess. The ceiling that took months to show up in a human team now shows up before your coffee gets cold.
 
@@ -108,7 +108,7 @@ All of this sounds obvious written down. It's much harder to spot in the moment.
 
 A request that dictates a solution and a request that states a considered decision look the same on the page. "Use Postgres" might be a first idea. It might also be a choice you made last month for good reasons. You're usually the last person to notice which one it is, because the reasoning feels complete from the inside.
 
-So I built a small Claude Code plugin to point it out. It's called [**`intent`**](https://github.com/vikrantjain/intent), and it has two skills.
+So I built a small Claude Code plugin to point it out. It's called [**`intent`**](https://github.com/vikrantjain/intent), and it has two skills. Neither assumes the work is code.
 
 **`/intent:briefing-review`** reviews how you briefed the agent, not what you asked for. It doesn't judge your plan. It checks whether you stated a problem or only an approach, and whether your constraints are real or preferences. It also checks whether success is defined, and whether you left the agent any room to propose something different.
 
@@ -154,7 +154,7 @@ changes, the food bank risks losing the coordinator as well as the Saturday capa
 
 Notice what's missing. There's no reminder app, no text-message system and no new sign-up tool. Those are solutions, and choosing one is the next conversation. Notice also the open questions. The agent didn't guess what "fully staffed" means or where the 90% comes from. It wrote those down as things to settle, each with the person who can settle it.
 
-Neither skill assumes software. One of the plugin's test cases is a request to *"send a survey to all our members asking them to rate our events from 1 to 5, and have it out by next week."* The review points out that the request says what to build but not what you want to find out. It notes that a single number shows *that* people are unhappy but not *why*. Then it asks what prompted the survey, what you'll decide from the results and where "next week" comes from. The same habit shows up in a food bank, a hiring decision or a research project, and the same questions help.
+Another of the plugin's test cases is a request to *"send a survey to all our members asking them to rate our events from 1 to 5, and have it out by next week."* The review points out that the request says what to build but not what you want to find out. It notes that a single number shows *that* people are unhappy but not *why*. Then it asks what prompted the survey, what you'll decide from the results and where "next week" comes from. The same habit shows up in a food bank, a hiring decision or a research project, and the same questions help.
 
 The plugin doesn't change how you work. It shows you which style your request is in, and what the other style would get you. The change is still yours to make.
 
