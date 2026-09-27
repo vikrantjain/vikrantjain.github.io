@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Collaborate With Your AI Agent. Don't Command It."
+title: "Your AI Agent Will Carry Out a Weak Plan Very Well"
 subtitle: "Giving orders has always capped a team at one person's thinking. An AI agent doesn't lift that cap. It carries out the order faster."
 description: "A requirements doc, an AI-written architecture, a todos app built in three minutes. Each was an order. Why that fails with AI agents, and what to do instead."
 date: 2026-09-27 00:00:00 +0530
@@ -57,64 +57,6 @@ That summary is the useful part — and the trap. It lists the decisions the age
 The architect's story shows what happens next. The design took a day. Nothing in it was checked against a problem, because nobody had stated one. The cost arrived where it always had: in the building and maintenance that followed.
 
 **A fast agent removes the delay between an order and a finished result. It doesn't remove the delay between an order and its consequences.** More gets built before anyone asks why.
-
-The two styles check their work at different points. The diagram shows where each one finds out it went wrong.
-
-```mermaid
----
-config:
-  theme: base
-  htmlLabels: false
-  themeVariables:
-    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif"
-    fontSize: "15px"
-    primaryColor: "#f1f3f5"
-    primaryBorderColor: "#c9cdd2"
-    primaryTextColor: "#242424"
-    lineColor: "#8a8f98"
-    clusterBkg: "#ffffff"
-    clusterBorder: "#e0e0e0"
-    titleColor: "#1a1a1a"
-    edgeLabelBackground: "#ffffff"
-  flowchart:
-    curve: basis
-    nodeSpacing: 30
-    rankSpacing: 40
----
-flowchart TB
-  subgraph Command["COMMAND: checked only at the end"]
-    direction LR
-    A1["Decide the<br/>approach alone"] --> A2["Hand over<br/>the order"]
-    A2 -- "nothing agreed" --> A3["Agent builds<br/>exactly that"]
-    A3 --> A4["`**Result misses**
-**the real need**`"]
-  end
-  subgraph Collaborate["COLLABORATE: agreed first, checked against it"]
-    direction LR
-    B1["State the<br/>problem"] --> B2["Discuss and<br/>push back"]
-    B2 --> B3["`**Agree on problem**
-**and success**`"]
-    B3 --> B4["Agent<br/>builds it"]
-    B4 --> B5["`**Check result against**
-**the agreement**`"]
-    B5 -. "gap found" .-> B2
-  end
-  Command ~~~ Collaborate
-  classDef default fill:#f1f3f5,stroke:#c9cdd2,color:#242424
-  style Command fill:#ffffff,stroke:#e0e0e0,color:#1a1a1a
-  style Collaborate fill:#ffffff,stroke:#e0e0e0,color:#1a1a1a
-  classDef fail fill:#fdecec,stroke:#e5484d,color:#9b1c1c,stroke-width:2px
-  classDef agree fill:#e7f3ff,stroke:#008AFF,color:#0b4f8a,stroke-width:2px
-  classDef check fill:#e6f4ea,stroke:#2f9e44,color:#1b5e20,stroke-width:2px
-  class A4 fail
-  class B3 agree
-  class B5 check
-  linkStyle 3,4,5,6,7 stroke:#008AFF,stroke-width:1.6px
-```
-
-**Command** runs in a straight line. The only check is the finished result, so a wrong approach is found at the end, when it costs the most. An agent gets you to that end sooner — but it's still the end.
-
-**Collaborate** puts the thinking before the building. The problem and the meaning of success are agreed first, by both sides. The result is then checked against that agreement, not against whatever the person giving the orders had in mind. When the check finds a gap, the loop goes back to discussion, not to a fresh order.
 
 ---
 
