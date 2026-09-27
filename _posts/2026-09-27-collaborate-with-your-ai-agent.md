@@ -117,6 +117,6 @@ Seeing your own style is the hard part. A first idea and a considered decision l
 
 So I built [**`intent`**](https://github.com/vikrantjain/intent), a small plugin for Claude Code, Anthropic's coding agent. Its review skill produced all three reviews above. It reviews how you briefed the agent before any work starts. It runs only when you ask. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
 
-The plugin is an early experiment, and I expect it to improve with use. Issues and suggestions on the repo are welcome.
+The plugin is an early experiment, and I expect it to improve with use. If you try it, tell me what it gets wrong. An issue on the repo is the easiest way.
 
 *The command habit is one of several I see in how people work with AI. Two others deserve their own articles: treating the agent as an oracle that should know what it was never told, and believing that only specially trained people can use AI well. More on those soon.*
