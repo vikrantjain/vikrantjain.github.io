@@ -12,13 +12,13 @@ tags: [ai-agents, claude-code, claudeai, engineering-management, software-engine
 
 Here are three requests. See if anything about them looks wrong.
 
-**A product manager** I worked with gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company. They would use A2A, a protocol built for that. That way, the agents would get answers to all kinds of problems quickly. Two reasons were given: speed to market, and competitors building AI agents.
+**A product manager** I worked with gave the dev team a requirements doc. Every department would get its own AI agent. The agents would talk to other agents, inside and outside the company. They would use A2A, a protocol built for that. That way, the agents would get answers to all kinds of problems quickly. The product manager gave two reasons: speed to market, and competitors building AI agents.
 
 **An architect** I worked with asked an AI agent to write an architecture doc. All of the organization's docs would move into a vector store, a database built for AI search. MCP servers would sit on top of it. MCP is a standard way for AI agents to call tools. Customers' AI agents would use those tools to get answers from the docs.
 
 **A developer** asks an AI agent to build a todos app in Java. The todos would be stored in DynamoDB, one of Amazon's cloud databases, "for fast and scalable retrieval". Notifications would go through SNS, Amazon's messaging service. This one is a test brief I wrote, based on similar requests I've seen.
 
-Most people would see nothing wrong here. Look again. Each request names a solution. None of them says what problem the solution solves, or for whom. The product manager gave reasons, but they were pressures, not a problem.
+Most people would see nothing wrong here. Look again. Each request names a solution. None of them says what problem the solution solves, or for whom. Those reasons were pressures, not a problem.
 
 **Each one is an order.**
 
@@ -30,7 +30,7 @@ The dev team spent a lot of time and money building whatever agents they could, 
 
 The architect's agent produced the design in a day. The trouble started when the team built it with real data. That took a long time. Every update to the docs needed extra work to keep the vector store in step. The team wrote utility scripts to manage it. The service did ship, at no charge to customers. Its total cost, maintenance included, was high for a service that gave customers what they could already read for free.
 
-Neither story is about bad people. The teams worked hard, and the agent was quick. Everyone did what they were asked. The problem sits one step earlier, in how the work was handed over.
+Neither story is about bad people. The teams worked hard, and the agent was quick. Everyone did what they were asked. The problem sits one step earlier, in how the work was handed over. The handover was the same habit, whether the work went to a team or to an agent.
 
 ---
 
@@ -70,7 +70,7 @@ The architect's story shows what happens next. The design took a day. Nothing in
 
 The alternative isn't a longer order. **It's giving whoever does the work room to question the order first.**
 
-Take the product manager's requirement. Brought to the team as a problem to discuss, the real need had room to surface. Even if that need was simply to start building AI agents, a discussion could have agreed what outcome to expect — and people would have known what they were waiting for. Simpler options than A2A would have had a hearing. In a field changing this fast, one protocol shouldn't be a fixed requirement. A2A was a preference presented as a constraint.
+Take the product manager's requirement. If it had been brought to the team as a problem to discuss, the real need would have had room to surface. Even if that need was simply to start building AI agents, a discussion could have agreed on what outcome to expect. People would have known what they were waiting for. Simpler options than A2A would have had a hearing. In a field changing this fast, one protocol shouldn't be a fixed requirement. A2A was a preference presented as a constraint.
 
 An agent can open that discussion too. I gave the product manager's requirement to an agent and asked it to review how the work was briefed before doing anything. It wrote no requirements. It said the brief handed over the answer but not the problem it was meant to solve. About the reasons given, it said:
 
@@ -82,7 +82,7 @@ I did the same with the architect's request. It wrote no design. It opened like 
 
 > You've given me the whole architecture already: a vector store, MCP servers on top of it, and MCP tools for customers. The only goal is "their AI agents can get answers from our docs easily." So the doc I'd write would describe a design that's already been chosen. It wouldn't test that design.
 
-Its first question was what was going wrong today. Were customers' agents giving wrong answers about the product? Were customers asking for this? Was it a support cost, or a competitive move? It also asked whether MCP was a requirement or a preference. If it was a first idea, the agent wanted room to compare it with simpler options, such as a public docs API.
+Its first question was what was happening now. Were customers' agents giving wrong answers about the product? Were customers asking for this? Was it a support cost, or a competitive move? It also asked whether MCP was a requirement or a preference. If it was a first idea, the agent wanted room to compare it with simpler options, such as a public docs API.
 
 I can't know whether those questions would have changed the design. The agent didn't know the docs were already free to read. But nobody asked those questions at the time. They point at what the project later paid for.
 
@@ -113,7 +113,7 @@ I expect this to matter more with each new model. The more capable the agent, th
 
 ### The tool I use to catch myself
 
-Seeing your own style is the hard part. A first idea and a considered decision look the same on the page. The reasoning always feels complete from the inside.
+Spotting your own habit is the hard part. A first idea and a considered decision look the same on the page. The reasoning always feels complete from the inside.
 
 So I built [**`intent`**](https://github.com/vikrantjain/intent), a small plugin for Claude Code, Anthropic's coding agent. Its review skill produced all three reviews above. It reviews how you briefed the agent before any work starts. It runs only when you ask. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
 
