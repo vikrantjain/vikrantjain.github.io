@@ -7,6 +7,8 @@ date: 2026-09-27 00:00:00 +0530
 permalink: /collaborate-with-your-ai-agent/
 share-img: "/assets/images/og-collaborate-with-your-ai-agent.png"
 tags: [ai-agents, claude-code, claudeai, engineering-management, software-engineering, futureofwork]
+discuss:
+  linkedin: "https://www.linkedin.com/posts/vikrantj_aiagents-claudecode-claudeai-share-7510031359940386816-xVrg"
 ---
 
 
