@@ -117,7 +117,7 @@ I expect this to matter more with each new model. The more capable the agent, th
 
 Spotting your own habit is the hard part. A first idea and a considered decision look the same on the page. The reasoning always feels complete from the inside.
 
-So I built [**`intent`**](https://github.com/vikrantjain/intent), a small plugin for Claude Code, Anthropic's coding agent. Its review skill produced all three reviews above. It reviews how you briefed the agent before any work starts. It runs only when you ask. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
+So I built [**`intent`**](https://github.com/vikrantjain/intent), a small plugin for Claude Code, Anthropic's coding agent. Its review skill produced all three reviews above. It reviews how you briefed the agent before any work starts. A second skill writes the problem you agreed on into a short `intent.md`. Neither assumes the work is code.
 
 The plugin is an early experiment, and I expect it to improve with use. If you try it, tell me what it gets wrong. An issue on the repo is the easiest way.
 
