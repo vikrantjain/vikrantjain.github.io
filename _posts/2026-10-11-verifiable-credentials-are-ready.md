@@ -11,11 +11,11 @@ tags: [ai, digital-identity, privacy, verifiable-credentials, oid4vc]
 
 A few years ago, when I joined a new company, HR emailed my personal Gmail account. Around seven people were on copy, from HR, Finance and an outside employee verification agency. The email asked me to reply all with copies of my Aadhaar card, my PAN card and my voter ID.
 
-Aadhaar is India's national ID. PAN is India's tax ID. Between them, the three cards showed my name, photo, date of birth, address, my father's name and my full 12-digit Aadhaar number.
+Aadhaar is India's national ID. PAN is India's tax ID. Most of the details repeat across the three cards: my name, photo, date of birth, address and father's name. The detail that matters most is my full 12-digit Aadhaar number.
 
-I refused to email them, because every one of them carried a lot of my personal data. I asked why they needed full copies. The HR executive said, "This is how things are done. It's part of the process. Nobody ever refuses."
+I refused to email full copies, because every one of them carried a lot of my personal data. For the Aadhaar, I shared a masked copy instead. A masked Aadhaar is the same card with all but the last four digits of the number hidden. I asked why the masked one wasn't enough. The HR executive said, "This is how things are done. It's part of the process. Nobody ever refuses."
 
-When I met her in person, she took my original documents for verification. She photocopied them and shared the copies with the same people. I only found out after it was done. She also complained about me to senior management.
+When I met her in person, she took my original documents for verification. She photocopied all of them, the full Aadhaar card included, and shared the copies with the same people. I only found out after it was done. She also complained about me to senior management.
 
 Later I found out who actually needed my full Aadhaar number, and why. I'll come back to that.
 
@@ -61,7 +61,7 @@ I trusted my employer enough to join it. That trust gave around seven inboxes no
 
 Back to my Aadhaar.
 
-A masked Aadhaar is the same card with all but the last four digits of the number hidden. My PAN card, my voter ID and a masked Aadhaar would have given HR and Finance every detail they needed except one: the full Aadhaar number.
+My PAN card, my voter ID and the masked Aadhaar would have given HR and Finance every detail they needed except one: the full Aadhaar number.
 
 That number goes on the form for my Provident Fund (PF), India's retirement savings scheme for salaried employees. One person in Finance filled in that form. He needed the number. Nobody else did.
 
