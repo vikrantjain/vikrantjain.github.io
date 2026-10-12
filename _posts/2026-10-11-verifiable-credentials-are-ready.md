@@ -9,19 +9,15 @@ share-img: "/assets/images/og-verifiable-credentials-are-ready.png"
 tags: [ai, digital-identity, privacy, verifiable-credentials, oid4vc]
 ---
 
-A few years ago, when I joined a new company, HR emailed my personal Gmail account. Around seven people were on copy, from HR, Finance and an outside employee verification agency. The email asked for my Aadhaar card. I was expected to reply all with a copy.
+A few years ago, when I joined a new company, HR emailed my personal Gmail account. Around seven people were on copy, from HR, Finance and an outside employee verification agency. The email asked me to reply all with copies of my Aadhaar card, my PAN card and my voter ID.
 
-Aadhaar is India's national ID. My card showed my name, photo, date of birth, address, my father's name and my full 12-digit Aadhaar number.
+Aadhaar is India's national ID. PAN is India's tax ID. Between them, the three cards showed my name, photo, date of birth, address, my father's name and my full 12-digit Aadhaar number.
 
-HR and Finance already had my PAN card (India's tax ID), my voter ID and a masked Aadhaar. A masked Aadhaar is the same card with all but the last four digits of the number hidden. I refused to send the full card that way. I also asked HR and Finance why the masked one wasn't enough. Nobody had a clear answer.
+I refused to email them, because every one of them carried a lot of my personal data. I asked why they needed full copies. The HR executive said, "This is how things are done. It's part of the process. Nobody ever refuses."
 
-The HR executive was confused. She said, "This is how things are done. It's part of the process. Nobody ever refuses."
+When I met her in person, she took my original documents for verification. She photocopied them and shared the copies with the same people. I only found out after it was done. She also complained about me to senior management.
 
-She then asked me to come to the office with my original documents for verification. She photocopied them and shared the copies with the same people. By the time I found out, it was already done. I was unhappy.
-
-Later, she complained to senior management that I was creating onboarding problems and had an attitude problem.
-
-Eventually I found out who actually needed my full Aadhaar, and why. I'll come back to that.
+Later I found out who actually needed my full Aadhaar number, and why. I'll come back to that.
 
 HR was right about one thing: this is how things are done, almost everywhere. Hotels photocopy your passport. Telecom shops keep a copy of your ID card. Websites ask you to upload a scan of your passport just to prove your age. A wine shop checks your driving licence and sees your name, date of birth, address and licence number. All it needs to know is whether you are over the legal age: 18 in many countries, 21 or more in some.
 
@@ -55,7 +51,7 @@ I trust the shop enough to buy wine from it. That trust gives the shop no claim 
 
 A friend I trust still has no right to read my medical records.
 
-I trusted my employer enough to join it. That trust gave around seven inboxes no claim on my full Aadhaar card.
+I trusted my employer enough to join it. That trust gave around seven inboxes no claim on copies of my ID cards.
 
 **Trusting someone for one purpose does not give them access to everything about me.** Trust is specific. Access should be specific too.
 
@@ -65,13 +61,13 @@ I trusted my employer enough to join it. That trust gave around seven inboxes no
 
 Back to my Aadhaar.
 
-Between my PAN card, my voter ID and the masked Aadhaar, HR and Finance had every detail they needed except one: the full Aadhaar number.
+A masked Aadhaar is the same card with all but the last four digits of the number hidden. My PAN card, my voter ID and a masked Aadhaar would have given HR and Finance every detail they needed except one: the full Aadhaar number.
 
 That number goes on the form for my Provident Fund (PF), India's retirement savings scheme for salaried employees. One person in Finance filled in that form. He needed the number. Nobody else did.
 
-So the real need was one number, for one form, filled in by one person. The process asked for a copy of the whole card, sent to around seven people, including an outside agency.
+So the full card was needed for one number, on one form, filled in by one person. The process asked for full copies of all three cards, sent to around seven people, including an outside agency.
 
-In my view, if the PF office had acted as the verifier and checked my Aadhaar with me directly, this whole process would not have been needed.
+In my view, if the PF office had acted as the verifier and checked my Aadhaar with me directly, nobody at the company would have needed my full Aadhaar number at all.
 
 The same gap shows up everywhere:
 
@@ -335,7 +331,7 @@ A wallet that can share less does not help if the other side still asks for ever
 
 **Lawmakers** need to revisit rules written for paper. A rule that demands a date of birth when the real need is "over 18" keeps the old habit alive, whatever technology exists.
 
-Each group waits for the others. Businesses say the law makes them collect. Lawmakers hear no demand for change. People do not object, because they never knew they could. The few who do object can end up like me, with a complaint about their attitude.
+Each group waits for the others. Businesses say the law makes them collect. Lawmakers hear no demand for change. People do not object, because they never knew they could. The few who do object can end up like me, with a complaint to senior management.
 
 The cycle breaks when enough people ask the question. When customers ask "why do you need this?", businesses have to find an answer. When enough of them cannot find one, they start asking for less. When enough businesses ask for less, the rules can follow.
 
