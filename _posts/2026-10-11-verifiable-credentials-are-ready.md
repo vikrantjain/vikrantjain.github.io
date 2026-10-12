@@ -238,9 +238,9 @@ Being open is what sets it apart. **You are not tied to any one provider.**
 *   **Wallets from different providers** can hold it. A government or an independent company can build one.
 *   **Any verifier** that follows the standard can check it. It needs no deal with your wallet provider or your issuer.
 
-No single company or platform sits in the middle of every check. A shop can check a credential issued in another country, as long as the shop trusts that issuer. India's DigiLocker, a government app for storing and sharing documents, works the other way: every share goes through that one system.
+No single company or platform sits in the middle of every check. A shop can check a credential issued in another country, as long as the shop trusts that issuer.
 
-The same idea is already reaching people. India's new Aadhaar app lets you share only **"Age above 18"**. I tried it. The file it produced revealed that one fact, signed by UIDAI, the government body that issues Aadhaar. Everything else stayed hidden. Masked Aadhaar and DigiLocker share the document itself, with your name, photo and address on it.
+The same idea is already reaching people. India's new Aadhaar app lets you share only **"Age above 18"**. I tried it. The file it produced revealed that one fact, signed by UIDAI, the government body that issues Aadhaar. Everything else stayed hidden. Masked Aadhaar shares the document itself, with your name, photo and address on it. So does DigiLocker, India's government app for storing and sharing documents.
 
 OID4VC has its own limits. The standard is new. It may still have flaws that nobody has found. The wallets that use it are newer still. Their bugs are still being found and fixed. A thief who gets your phone and gets past its lock could use your credentials. Nothing in security is perfect. The direction is still right.
 
@@ -309,6 +309,8 @@ flowchart TB
 
 **There is far less to leak.** The verifier receives two facts. A breach of its systems would expose only two yes answers.
 
+**Each check costs the verifier less.** Once a verifier can accept proofs, software does the checking. Checking documents by hand takes staff time, and each extra round delays a new hire or a new customer. Every copy a verifier stores is also a risk it pays for if the copy leaks. A signed credential leaves no document copies to store.
+
 **You hand over nothing else.** Your passport number, address and school records stay in your wallet.
 
 Who knows? One day we may not need these documents at all. In India today, your PAN card, voter ID, Aadhaar card and driving licence each repeat the same details: your name, date of birth, photo and often your father's name.
@@ -327,7 +329,7 @@ A wallet that can share less does not help if the other side still asks for ever
 
 **People** need to understand when to share and what to share. A request for your date of birth is not automatically a fair one. Ask what question it answers.
 
-**Verifiers** need to be built for proofs. Every shop, website, bank, employer and app that checks people must be able to accept a signed answer instead of a photocopy. More importantly, they must stop and ask what they really need to know. Today they ask for everything because it is easy and customers rarely object. An extra field on a form costs them almost nothing. The risk of storing your data falls mostly on you.
+**Verifiers** need to be built for proofs. Every shop, website, bank, employer and app that checks people must be able to accept a signed answer instead of a photocopy. More importantly, they must stop and ask what they really need to know. Today they ask for everything because it is easy and customers rarely object. An extra field on a form costs them almost nothing. The harm when your data leaks falls mostly on you.
 
 **Lawmakers** need to revisit rules written for paper. A rule that demands a date of birth when the real need is "over 18" keeps the old habit alive, whatever technology exists.
 
