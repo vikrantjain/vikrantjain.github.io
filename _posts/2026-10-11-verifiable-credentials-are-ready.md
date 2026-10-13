@@ -7,6 +7,8 @@ date: 2026-10-11
 permalink: /verifiable-credentials-are-ready/
 share-img: "/assets/images/og-verifiable-credentials-are-ready.png"
 tags: [ai, digital-identity, privacy, verifiable-credentials, oid4vc]
+discuss:
+  linkedin: "https://lnkd.in/p/geFahN7R"
 ---
 
 A few years ago, when I joined a new company, HR emailed my personal Gmail account. Around seven people were on copy, from HR, Finance and an outside employee verification agency. The email asked me to reply all with copies of my Aadhaar card, my PAN card and my voter ID.
