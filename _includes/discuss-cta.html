@@ -12,7 +12,8 @@
 {%- if page.discuss -%}
   {%- assign rendered = 0 -%}
   <div class="discuss-cta">
-    <span class="discuss-cta-label">💬 Join the conversation on</span>
+    <div class="discuss-cta-ask">
+    <span class="discuss-cta-label">👍 Agree? Leave a like. 💬 Disagree? Tell me why. →</span>
     {%- for link in page.discuss -%}
       {%- assign url = link[1] -%}
       {%- if url and url != "" -%}
@@ -31,5 +32,7 @@
         {%- assign rendered = rendered | plus: 1 -%}
       {%- endif -%}
     {%- endfor -%}
+    </div>
+    <div class="discuss-cta-note">Every like and comment helps this post reach more people.</div>
   </div>
 {%- endif -%}
