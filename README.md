@@ -15,6 +15,10 @@ needed.
   cards.
 - `index.md` (home), `about.md`, `tags.html` (tag index) — top-level pages.
 - `_config.yml` — site config. `permalink: /:title/` locks clean URLs.
+- `_config_local.yml` — local-preview overlay on `_config.yml`. GitHub Pages
+  never reads it.
+- `scripts/` — local tooling, excluded from the published site:
+  `preview.sh` (local preview, see below).
 
 ## Publishing workflow
 

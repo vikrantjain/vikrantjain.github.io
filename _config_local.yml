@@ -1,0 +1,14 @@
+# Local-preview-only overlay (not used by GitHub Pages).
+# Layered on top of _config.yml via: jekyll serve --config _config.yml,_config_local.yml
+
+# Override the production url so local builds emit localhost in absolute URLs
+# (og:image, feed, sitemap) instead of the live domain.
+url: "http://localhost:4000"
+
+# Jekyll replaces the `exclude` array on merge, so it must be the full list.
+exclude:
+  - README.md
+  - CLAUDE.md
+  - vendor
+  - Gemfile
+  - scripts
