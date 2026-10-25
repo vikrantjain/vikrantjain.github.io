@@ -11,7 +11,6 @@ Personal blog of Vikrant Jain, published with **Jekyll** on **GitHub Pages**.
 - **Repo:** `vikrantjain/vikrantjain.github.io` (root user site)
 - **Live URL:** https://vikrantjain.dev/ (custom domain via `CNAME`; the repo is still the `vikrantjain.github.io` user site)
 - **Theme:** Beautiful Jekyll via `remote_theme: daattali/beautiful-jekyll@6.0.1`. No local theme files; native GitHub Pages build (no Actions, no custom plugins beyond `jekyll-sitemap`/`jekyll-seo-tag`/`jekyll-feed`).
-- Articles were migrated from Hashnode (`vikrantjain.hashnode.dev`). Hashnode is no longer the source of truth — this repo is.
 
 ## How customization works (don't break these)
 
@@ -22,33 +21,36 @@ All site customization rides on Beautiful Jekyll hooks (`head-extra`/`after-cont
 - **Mermaid:** GitHub Pages doesn't render mermaid itself (that's a github.com repo-view feature). It works only because `mermaid.html` loads mermaid.js site-wide — don't remove it.
 - **Remote themes ship `_layouts`/`_includes`/`_sass` only — not root pages.** Hence `tags.html` is recreated locally (explicit `permalink: /tags/`); without it the theme's tag index isn't inherited and every post's `#tag` link 404s.
 
-## Post frontmatter convention
+## Post frontmatter contract
+
+Posts are written by the `article-writer` plugin, which owns the content and the field values. This repo owns how each field renders. The field names and their meanings are the contract between the two.
+
+**Renaming or repurposing a field needs the same change in the plugin's `references/jekyll-blog.md`.** Otherwise the plugin keeps writing the old field and the blog silently ignores it.
 
 ```yaml
 ---
 layout: post
 title: "..."
+subtitle: "..."           # shown under the title and as the home-page blurb
 description: "..."        # SEO; omit to fall back to auto-excerpt
 date: YYYY-MM-DD
-permalink: /slug/         # matches the original Hashnode slug
+permalink: /slug/         # permanent once published; inbound links depend on it
 share-img: "/assets/images/og-slug.png"  # OG/social card image; optional
 tags: [a, b, c]
-discuss:                  # optional; renders a "Discuss this post" footer
+discuss:                  # optional; map of platform → discussion URL
   linkedin: "https://www.linkedin.com/posts/..."
-  reddit: "https://www.reddit.com/r/..."
 ---
 ```
 
-`share-img` is the OG/social-card image, stored as `assets/images/og-<slug>.<ext>`. `discuss` is an
-optional frontmatter map that renders a footer via `_includes/discuss-cta.html`
-— see that file for supported platform keys and behavior. Never hand-write a
-discussion link in the body.
+`share-img` is stored as `assets/images/og-<slug>.<ext>`. `discuss` renders the
+card in `_includes/discuss-cta.html`, which lists the supported platform keys.
+Never hand-write a discussion link in the body.
 
-Body conventions (kept generator-agnostic for portability):
-- Section headings use `###` (h3). The title lives in frontmatter. Do not use `#`/`##` in the body.
-- Mermaid goes in ` ```mermaid ` fenced blocks (rendered live site-wide — do not replace with images).
-- No Liquid tags inside post bodies.
-- In-body cross-links between the author's own articles use relative URLs (`/slug/`), not `vikrantjain.hashnode.dev` URLs.
+The build relies on these body rules:
+- Section headings use `###` (h3). `_includes/toc.html` builds the table of contents from h3 only, so a `##` section is missing from it.
+- Mermaid goes in ` ```mermaid ` fenced blocks. `_includes/mermaid.html` renders only those.
+- No Liquid tags inside post bodies, code fences included. Jekyll processes them, which breaks the build or renders them empty.
+- Cross-links between the author's own articles use relative URLs (`/slug/`).
 
 ## About page
 
