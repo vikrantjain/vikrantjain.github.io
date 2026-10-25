@@ -30,7 +30,7 @@ Posts are written by the `article-writer` plugin, which owns the content and the
 ```yaml
 ---
 layout: post
-title: "..."
+title: "..."              # also <title> and og:title; there is no separate SEO-title field
 subtitle: "..."           # shown under the title and as the home-page blurb
 description: "..."        # SEO; omit to fall back to auto-excerpt
 date: YYYY-MM-DD
@@ -42,15 +42,16 @@ discuss:                  # optional; map of platform → discussion URL
 ---
 ```
 
-`share-img` is stored as `assets/images/og-<slug>.<ext>`. `discuss` renders the
-card in `_includes/discuss-cta.html`, which lists the supported platform keys.
+`share-img` must point to a file that exists, stored as `assets/images/og-<slug>.<ext>`.
+A missing file still builds, but every social share shows a broken card.
+`discuss` renders the card in `_includes/discuss-cta.html`, which lists the
+supported platform keys.
 Never hand-write a discussion link in the body.
 
 The build relies on these body rules:
 - Section headings use `###` (h3). `_includes/toc.html` builds the table of contents from h3 only, so a `##` section is missing from it.
 - Mermaid goes in ` ```mermaid ` fenced blocks. `_includes/mermaid.html` renders only those.
 - No Liquid tags inside post bodies, code fences included. Jekyll processes them, which breaks the build or renders them empty.
-- Cross-links between the author's own articles use relative URLs (`/slug/`).
 
 ## About page
 
