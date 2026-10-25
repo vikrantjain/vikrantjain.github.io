@@ -33,16 +33,16 @@ which GitHub Pages never builds.
 Publishing needs no local toolchain, but to preview changes before pushing,
 run Jekyll in the `ruby:3.3` Docker image (no Ruby is installed on the host).
 The `github-pages` gem in the `Gemfile` mirrors GitHub's build environment, so
-what you see locally matches production. From the repo root:
+what you see locally matches production:
 
 ```bash
-docker run --rm -p 4000:4000 -v "$PWD":/srv/jekyll -w /srv/jekyll ruby:3.3 \
-  bash -c "bundle config set --local path vendor/bundle && bundle install && \
-  bundle exec jekyll serve --host 0.0.0.0 --livereload --config _config.yml,_config_local.yml"
+scripts/preview.sh          # serve at http://localhost:4000, with livereload
+scripts/preview.sh build    # one-shot compile check; output lands in _site/
 ```
 
-Then open http://localhost:4000. For a one-shot compile check (no server),
-swap `jekyll serve ...` for `jekyll build ...` — output lands in `_site/`.
+The script runs the container as you, not root. A root container would leave
+root-owned files in `_site/` and `vendor/bundle` that need `sudo` to delete.
+In Claude Code, `/preview` (`.claude/skills/preview/`) runs the same script.
 
 `_config_local.yml` overrides `url` to `localhost` so absolute URLs (og:image,
 RSS feed, sitemap) point local instead of the live domain. `vendor/bundle` and
