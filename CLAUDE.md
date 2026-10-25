@@ -15,10 +15,11 @@ Personal blog of Vikrant Jain, published with **Jekyll** on **GitHub Pages**.
 
 ## How customization works (don't break these)
 
-All site customization rides on Beautiful Jekyll hooks — there are **no** local theme-layout overrides. `_config.yml` injects `_includes/styles.html` and `_includes/mermaid.html` site-wide via `head-extra`; posts also get `_includes/toc.html` (head-extra) and `_includes/discuss-cta.html` (after-content). Each include documents itself — the non-obvious, not-in-code bits:
+All site customization rides on Beautiful Jekyll hooks (`head-extra`/`after-content` in `_config.yml`) — there are **no** local theme-layout overrides. Each include documents itself — the non-obvious, not-in-code bits:
 
 - `_config.yml` sets `url:` explicitly so `jekyll-seo-tag`/`jekyll-feed`/`jekyll-sitemap` emit absolute URLs (og:image, RSS, sitemap) instead of relying on GitHub Pages auto-injection. `_config_local.yml` overrides it to localhost for preview.
-- **Mermaid:** GitHub Pages doesn't render mermaid itself (that's a github.com repo-view feature). It works only because `mermaid.html` loads mermaid.js site-wide — don't remove it, and don't swap diagrams for images.
+- **Exclusions go in both config files.** `_config_local.yml` replaces the whole `exclude` list from `_config.yml` instead of merging with it. A path excluded only in `_config_local.yml` is still published in production. Local preview hides it, so the leak goes unnoticed.
+- **Mermaid:** GitHub Pages doesn't render mermaid itself (that's a github.com repo-view feature). It works only because `mermaid.html` loads mermaid.js site-wide — don't remove it.
 - **Remote themes ship `_layouts`/`_includes`/`_sass` only — not root pages.** Hence `tags.html` is recreated locally (explicit `permalink: /tags/`); without it the theme's tag index isn't inherited and every post's `#tag` link 404s.
 
 ## Post frontmatter convention
@@ -38,8 +39,7 @@ discuss:                  # optional; renders a "Discuss this post" footer
 ---
 ```
 
-`share-img` is the OG/social-card image, stored as `assets/images/og-<slug>.<ext>`
-(every post has one except `documentation-is-not-a-deliverable`). `discuss` is an
+`share-img` is the OG/social-card image, stored as `assets/images/og-<slug>.<ext>`. `discuss` is an
 optional frontmatter map that renders a footer via `_includes/discuss-cta.html`
 — see that file for supported platform keys and behavior. Never hand-write a
 discussion link in the body.
