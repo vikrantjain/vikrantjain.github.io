@@ -1,5 +1,5 @@
 {%- comment -%}
-  Renders a "Discuss this post" footer from the post's `discuss` frontmatter map, e.g.:
+  Renders a "Discuss this post" card from the post's `discuss` frontmatter map, e.g.:
 
     discuss:
       linkedin: "https://www.linkedin.com/posts/..."
@@ -7,32 +7,31 @@
       x:        "https://x.com/..."
 
   Each entry is optional; an empty value is skipped. Nothing renders if `discuss`
-  is absent. Platform labels are friendly-cased; unknown keys fall back to capitalize.
+  is absent. Each platform gets one button labelled with that platform's own
+  actions (like, upvote, reply); unknown keys fall back to "Discuss on <Key>".
 {%- endcomment -%}
 {%- if page.discuss -%}
-  {%- assign rendered = 0 -%}
   <div class="discuss-cta">
-    <div class="discuss-cta-ask">
-    <span class="discuss-cta-label">👍 Agree? Leave a like. 💬 Disagree? Tell me why. →</span>
+    <p class="discuss-cta-title">Agree or disagree?</p>
+    <p class="discuss-cta-text">Leave a like if this resonated, or tell me where I got it wrong. I read and reply to every comment.</p>
+    <div class="discuss-cta-buttons">
     {%- for link in page.discuss -%}
       {%- assign url = link[1] -%}
       {%- if url and url != "" -%}
-        {%- if rendered != 0 %}<span class="discuss-cta-sep">·</span>{% endif -%}
         {%- assign key = link[0] | downcase -%}
         {%- case key -%}
-          {%- when "linkedin" -%}{%- assign name = "LinkedIn" -%}{%- assign icon = "fab fa-linkedin" -%}
-          {%- when "x" or "twitter" -%}{%- assign name = "X" -%}{%- assign icon = "fab fa-x-twitter" -%}
-          {%- when "reddit" -%}{%- assign name = "Reddit" -%}{%- assign icon = "fab fa-reddit" -%}
-          {%- when "hackernews" or "hn" -%}{%- assign name = "Hacker News" -%}{%- assign icon = "fab fa-hacker-news" -%}
-          {%- when "github" -%}{%- assign name = "GitHub" -%}{%- assign icon = "fab fa-github" -%}
-          {%- when "mastodon" -%}{%- assign name = "Mastodon" -%}{%- assign icon = "fab fa-mastodon" -%}
-          {%- else -%}{%- assign name = link[0] | capitalize -%}{%- assign icon = "fas fa-comment" -%}
-        {%- endcase -%}
-        <a href="{{ url }}" target="_blank" rel="noopener"><i class="{{ icon }}" aria-hidden="true"></i> {{ name }}</a>
-        {%- assign rendered = rendered | plus: 1 -%}
+          {%- when "linkedin" -%}{%- assign slug = "linkedin" -%}{%- assign label = "Like or comment on LinkedIn" -%}{%- assign icon = "fab fa-linkedin" -%}
+          {%- when "x" or "twitter" -%}{%- assign slug = "x" -%}{%- assign label = "Like or reply on X" -%}{%- assign icon = "fab fa-x-twitter" -%}
+          {%- when "reddit" -%}{%- assign slug = "reddit" -%}{%- assign label = "Upvote or comment on Reddit" -%}{%- assign icon = "fab fa-reddit" -%}
+          {%- when "hackernews" or "hn" -%}{%- assign slug = "hackernews" -%}{%- assign label = "Upvote or comment on Hacker News" -%}{%- assign icon = "fab fa-hacker-news" -%}
+          {%- when "github" -%}{%- assign slug = "github" -%}{%- assign label = "Comment on GitHub" -%}{%- assign icon = "fab fa-github" -%}
+          {%- when "mastodon" -%}{%- assign slug = "mastodon" -%}{%- assign label = "Boost or reply on Mastodon" -%}{%- assign icon = "fab fa-mastodon" -%}
+          {%- else -%}{%- assign slug = "other" -%}{%- assign name = link[0] | capitalize -%}{%- assign label = "Discuss on " | append: name -%}{%- assign icon = "fas fa-comment" -%}
+        {%- endcase %}
+      <a class="discuss-cta-btn discuss-cta-btn--{{ slug }}" href="{{ url }}" target="_blank" rel="noopener"><i class="{{ icon }}" aria-hidden="true"></i> {{ label }}</a>
       {%- endif -%}
-    {%- endfor -%}
+    {%- endfor %}
     </div>
-    <div class="discuss-cta-note">Every like and comment helps this post reach more people.</div>
+    <p class="discuss-cta-note">Every like and comment helps this post reach more people.</p>
   </div>
 {%- endif -%}
