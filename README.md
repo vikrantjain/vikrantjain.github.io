@@ -18,7 +18,8 @@ needed.
 - `_config_local.yml` — local-preview overlay on `_config.yml`. GitHub Pages
   never reads it.
 - `scripts/` — local tooling, excluded from the published site:
-  `preview.sh` (local preview, see below).
+  `preview.sh` (local preview, see below) and `screenshot.sh` (headless
+  Chrome screenshots of the built site).
 
 ## Publishing workflow
 
@@ -42,7 +43,11 @@ what you see locally matches production:
 ```bash
 scripts/preview.sh          # serve at http://localhost:4000, with livereload
 scripts/preview.sh build    # one-shot compile check; output lands in _site/
+scripts/screenshot.sh /<slug>/ .discuss-cta   # PNGs at desktop and phone width
 ```
+
+`screenshot.sh` reads the built `_site/`, so run `build` first. It needs Chrome
+or Chromium and `python3` on the host. Its header comment lists the options.
 
 The script runs the container as you, not root. A root container would leave
 root-owned files in `_site/` and `vendor/bundle` that need `sudo` to delete.
